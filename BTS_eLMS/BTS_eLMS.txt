@@ -1,0 +1,16 @@
+BTS_eLMS/
+│
+├── HTML/
+│   ├── index.html
+│   ├── trainer_dashboard.html
+│   ├── trainee_dashboard.html
+│   ├── admin_dashboard.html
+│   └── guest_dashboard.html
+│
+├── CSS/
+│   └── style.css
+│
+├── Script/
+│   └── script.js
+│
+├── icons/

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ELMS — Trainee Dashboard (Front-end only)</title>
+<style>
+  :root{
+    --bg:#f3f8ff; --panel:#e6f0ff; --accent:#004080; --muted:#6f7b8a; --border:#d6deea; --danger:#b7410e;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:#111}
+  .app{display:flex;min-height:100vh}
+  /* Sidebar */
+  .sidebar{width:250px;background:var(--panel);padding:20px;border-right:1px solid var(--border);position:fixed;left:0;top:0;bottom:0}
+  .logo{color:var(--accent);font-weight:800;font-size:1.2rem;margin-bottom:18px}
+  .nav a{display:block;padding:10px 12px;border-radius:8px;color:#0b2740;font-weight:700;margin-bottom:6px}
+  .nav a.active,.nav a:hover{background:#cfe6ff;border-left:4px solid var(--accent);padding-left:8px}
+  /* Content */
+  .content{margin-left:250px;padding:20px 24px;flex:1}
+  header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid var(--border);padding-bottom:12px}
+  .search input{width:420px;padding:9px 12px;border-radius:20px;border:1px solid var(--border)}
+  .profile{display:flex;align-items:center;gap:12px}
+  .profile img{width:44px;height:44px;border-radius:50%;border:2px solid var(--accent);object-fit:cover;cursor:pointer}
+  /* grid/cards */
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+  .card{background:var(--panel);padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(0,64,128,0.04)}
+  .col-4{grid-column:span 4}
+  .col-8{grid-column:span 8}
+  .col-12{grid-column:span 12}
+  h2{color:var(--accent);margin:0 0 10px;font-size:1.05rem}
+  /* table */
+  table{width:100%;border-collapse:collapse;background:white;border-radius:8px;overflow:hidden}
+  th,td{padding:10px 12px;border-bottom:1px solid #eee;text-align:left;font-size:0.95rem}
+  thead th{background:#cfe6ff;color:var(--accent);font-weight:800}
+  tbody tr:hover{background:#fafcff}
+  .pill{display:inline-block;padding:6px 10px;border-radius:999px;font-weight:700;font-size:0.85rem}
+  /* buttons */
+  .btn{padding:8px 12px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-ghost{background:transparent;border:1px solid var(--border);color:var(--accent)}
+  .btn-danger{background:var(--danger);color:#fff}
+  .btn-sm{padding:6px 8px;font-size:0.85rem}
+  /* forms */
+  input[type="text"],input[type="email"],input[type="tel"],textarea,select{width:100%;padding:9px;border-radius:8px;border:1px solid var(--border);font-size:0.95rem}
+  textarea{min-height:90px;resize:vertical}
+  .form-row{display:flex;gap:10px}
+  .form-row .col{flex:1}
+  /* modal */
+  .backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.35);align-items:center;justify-content:center;padding:12px;z-index:999}
+  .backdrop.open{display:flex}
+  .modal{background:white;border-radius:10px;padding:16px;max-width:900px;width:100%;max-height:90vh;overflow:auto}
+  .close-x{float:right;border:none;background:none;font-size:20px;cursor:pointer;color:var(--muted)}
+  /* responsive */
+  @media(max-width:980px){.sidebar{transform:translateX(-100%);position:fixed;z-index:999}.sidebar.open{transform:translateX(0)}.content{margin-left:0}.search input{width:160px}}
+  /* small helper */
+  .muted{color:var(--muted);font-size:0.9rem}
+  .file-list{font-size:0.95rem;color:var(--muted);margin-top:8px}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">ELMS Trainee</div>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#" data-view="overview" class="active">Dashboard</a>
+      <a href="#" data-view="courses">My Courses</a>
+      <a href="#" data-view="activities">My Activities</a>
+      <a href="#" data-view="enroll">Enrollment</a>
+      <a href="#" data-view="profile">Profile</a>
+    </nav>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+    <header>
+      <div style="display:flex;align-items:center;gap:12px">
+        <button id="toggleSidebar" class="btn btn-ghost" style="display:none">☰</button>
+        <div class="search"><input id="search" placeholder="Search courses, activities..." /></div>
+      </div>
+
+      <div class="profile" title="Edit profile">
+        <img id="avatar" src="https://i.pravatar.cc/150?img=15" alt="avatar" />
+        <div style="text-align:right">
+          <div id="displayName" style="font-weight:800">Trainee Ana</div>
+          <div style="font-size:12px;color:var(--muted)" id="displayEmail">ana@example.com</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- VIEWS -->
+    <!-- OVERVIEW -->
+    <section id="view-overview" class="view">
+      <div class="grid" style="margin-bottom:12px">
+        <div class="card col-4"><h2>Enrolled Courses</h2><p style="font-weight:800;font-size:1.4rem" id="statEnrolled">0</p><div class="muted">Courses</div></div>
+        <div class="card col-4"><h2>Hours Studied</h2><p style="font-weight:800;font-size:1.4rem" id="statHours">0</p><div class="muted">Hours</div></div>
+        <div class="card col-4"><h2>Average Grade</h2><p style="font-weight:800;font-size:1.4rem" id="statGrade">N/A</p><div class="muted">Avg</div></div>
+      </div>
+
+      <div class="grid">
+        <div class="card col-8">
+          <h2>My Courses (Quick Access)</h2>
+          <div id="quickCourses"></div>
+        </div>
+        <div class="card col-4">
+          <h2>Enrollment Requests</h2>
+          <div id="enrollPreview"></div>
+          <div style="height:12px"></div>
+          <button class="btn btn-primary" id="btnSelfEnroll">Self-Enroll in Course</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MY COURSES -->
+    <section id="view-courses" class="view" style="display:none">
+      <h2>My Courses</h2>
+      <div class="card col-12">
+        <table id="coursesTable">
+          <thead><tr><th>Course</th><th>Instructor</th><th>Progress</th><th>Materials</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ACTIVITIES -->
+    <section id="view-activities" class="view" style="display:none">
+      <h2>My Activities</h2>
+      <div style="display:flex;gap:8px;margin-bottom:10px">
+        <button id="btnUploadAnswer" class="btn btn-primary">Upload Answer / Project</button>
+      </div>
+      <div class="card">
+        <table id="activitiesTable">
+          <thead><tr><th>Activity</th><th>Course</th><th>Due</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ENROLLMENT -->
+    <section id="view-enroll" class="view" style="display:none">
+      <h2>Enrollment Requests Status</h2>
+      <div class="card">
+        <table id="enrollTable">
+          <thead><tr><th>Course</th><th>Requested On</th><th>Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PROFILE -->
+    <section id="view-profile" class="view" style="display:none">
+      <h2>My Profile</h2>
+      <div class="card" style="max-width:900px">
+        <form id="profileForm">
+          <div style="display:flex;gap:14px;align-items:center">
+            <div>
+              <img id="profilePreview" src="https://i.pravatar.cc/130?img=15" alt="profile" style="width:120px;height:120px;border-radius:50%;border:3px solid var(--accent);object-fit:cover" />
+              <div style="margin-top:8px"><input id="fileProfile" type="file" accept="image/*" /></div>
+            </div>
+            <div style="flex:1">
+              <label>Name</label>
+              <input id="inpName" type="text" />
+              <label style="margin-top:8px">Email</label>
+              <input id="inpEmail" type="email" />
+              <label style="margin-top:8px">Contact</label>
+              <input id="inpContact" type="tel" />
+              <label style="margin-top:8px">Bio</label>
+              <textarea id="inpBio" placeholder="A short bio about your learning goals..."></textarea>
+              <div style="text-align:right;margin-top:10px">
+                <button class="btn btn-primary" type="submit">Save Profile</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- MODALS -->
+<div id="backdrop" class="backdrop">
+  <div class="modal" role="dialog" aria-modal="true">
+    <button class="close-x" id="backdropClose">&times;</button>
+    <div id="modalInner"></div>
+  </div>
+</div>
+
+<script>
+/* ============================
+   FRONT-END ONLY: mock state
+   ============================ */
+const state = {
+  profile: {
+    id:1, name:'Trainee Ana', email:'ana@example.com',
+    contact:'+63 912 000 0000', bio:'Aspiring web dev', avatar:'https://i.pravatar.cc/150?img=15'
+  },
+  enrolledCourses: [
+    {id:501,title:'Intro to HTML', instructor:'Jane (Trainer)', progress:58, materials:[{name:'Lecture 1.pdf', url:'#'}, {name:'Slides.zip', url:'#'}]},
+    {id:502,title:'CSS Fundamentals', instructor:'Mark (Trainer)', progress:32, materials:[{name:'CSS Guide.pdf', url:'#'}]}
+  ],
+  activities: [
+    {id:601,title:'HTML Assignment 1', course:'Intro to HTML', due:'2025-08-20', status:'Pending', submission:null},
+    {id:602,title:'CSS Project', course:'CSS Fundamentals', due:'2025-08-25', status:'Pending', submission:null}
+  ],
+  availableCourses: [
+    {id:701,title:'JavaScript Basics', instructor:'Sam', description:'Learn JS fundamentals'},
+    {id:702,title:'Responsive Design', instructor:'Maya', description:'Layout & media queries'}
+  ],
+  enrollmentRequests: [
+    // existing requests from this trainee
+    // {id:801,courseId:701,courseTitle:'JavaScript Basics',requestedOn:'2025-08-06',status:'Pending'}
+  ]
+};
+
+/* ============================
+   UI helpers: views & nav
+   ============================ */
+function showView(v){
+  document.querySelectorAll('.view').forEach(el=>el.style.display='none');
+  const el = document.getElementById('view-'+v);
+  if(el) el.style.display='block';
+  document.querySelectorAll('.nav a').forEach(a=>a.classList.remove('active'));
+  const nav = document.querySelector('.nav a[data-view="'+v+'"]');
+  if(nav) nav.classList.add('active');
+}
+document.querySelectorAll('.nav a').forEach(a=>{
+  a.addEventListener('click', e=>{ e.preventDefault(); showView(a.dataset.view); });
+});
+
+/* ============================
+   Renderers
+   ============================ */
+function renderProfileHeader(){
+  document.getElementById('avatar').src = state.profile.avatar;
+  document.getElementById('displayName').textContent = state.profile.name;
+  document.getElementById('displayEmail').textContent = state.profile.email;
+  document.getElementById('profilePreview').src = state.profile.avatar;
+  document.getElementById('inpName').value = state.profile.name;
+  document.getElementById('inpEmail').value = state.profile.email;
+  document.getElementById('inpContact').value = state.profile.contact;
+  document.getElementById('inpBio').value = state.profile.bio;
+}
+
+function renderOverview(){
+  document.getElementById('statEnrolled').textContent = state.enrolledCourses.length;
+  // fake hours & avg grade for demo
+  document.getElementById('statHours').textContent = 42;
+  document.getElementById('statGrade').textContent = '84%';
+  // quick courses list
+  const qc = document.getElementById('quickCourses');
+  qc.innerHTML = state.enrolledCourses.map(c=>`
+    <div style="padding:10px;background:white;border-radius:8px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center">
+      <div><strong>${c.title}</strong><div class="muted">${c.instructor}</div></div>
+      <div><button class="btn btn-sm btn-primary" onclick="openCourseMaterials(${c.id})">Materials</button></div>
+    </div>
+  `).join('');
+  // enrollment preview
+  const ep = document.getElementById('enrollPreview');
+  ep.innerHTML = state.enrollmentRequests.length ? state.enrollmentRequests.map(r=>`<div style="padding:8px;background:white;border-radius:8px;margin-bottom:8px"><strong>${r.courseTitle}</strong><div class="muted">Requested: ${r.requestedOn} • ${r.status}</div></div>`).join('') : '<div class="muted">No pending requests</div>';
+}
+
+function renderCourses(){
+  const tbody = document.querySelector('#coursesTable tbody'); tbody.innerHTML='';
+  state.enrolledCourses.forEach(c=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${c.title}</td><td>${c.instructor}</td><td>${c.progress}%</td>
+      <td>
+        ${c.materials.map(m=>`<div><a href="${m.url}" onclick="simulateDownload(event,'${m.name}')">${m.name}</a></div>`).join('')}
+      </td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+function renderActivities(){
+  const tbody = document.querySelector('#activitiesTable tbody'); tbody.innerHTML='';
+  state.activities.forEach(a=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${a.title}</td><td>${a.course}</td><td>${a.due}</td><td>${a.status}</td>
+      <td>
+        <button class="btn btn-sm btn-primary" onclick="openUpload(${a.id})">${a.submission?'Re-upload':'Upload'}</button>
+        ${a.submission? `<div class="muted" style="margin-top:6px">Submitted: ${a.submission.name}</div>` : ''}
+      </td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+function renderEnrollTable(){
+  const tbody = document.querySelector('#enrollTable tbody'); tbody.innerHTML='';
+  state.enrollmentRequests.forEach(r=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${r.courseTitle}</td><td>${r.requestedOn}</td><td>${r.status}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+/* ============================
+   Actions (front-end only)
+   ============================ */
+
+/* Open materials modal for a course */
+function openCourseMaterials(courseId){
+  const c = state.enrolledCourses.find(x=>x.id===courseId);
+  if(!c) return alert('Course not found');
+  openModal(`<h3>Materials — ${c.title}</h3>
+    <div>${c.materials.map(m=>`<div style="padding:8px;background:#f9fbff;border-radius:6px;margin-bottom:6px"><strong>${m.name}</strong><div class="muted">Click to download</div><div style="margin-top:6px"><a href="${m.url}" onclick="simulateDownload(event,'${m.name}')">Download</a></div></div>`).join('')}</div>
+    <div style="text-align:right;margin-top:12px"><button class="btn btn-primary" onclick="closeModal()">Close</button></div>`);
+}
+
+/* Simulate download (front-end only) */
+function simulateDownload(e, name){
+  e.preventDefault();
+  alert(`Simulated download: ${name}`);
+}
+
+/* Upload answer/project for activity */
+function openUpload(activityId){
+  const a = state.activities.find(x=>x.id===activityId);
+  if(!a) return;
+  openModal(`<h3>Upload for: ${a.title}</h3>
+    <p class="muted">Due: ${a.due}</p>
+    <form id="uploadForm">
+      <label>Choose file</label>
+      <input type="file" name="file" id="uploadFile" required />
+      <div class="file-list" id="fileName"></div>
+      <div style="text-align:right;margin-top:10px"><button class="btn btn-primary" type="submit">Upload</button></div>
+    </form>`);
+  const fileInput = document.getElementById('uploadFile');
+  const fileName = document.getElementById('fileName');
+  fileInput.addEventListener('change', ()=>{ fileName.textContent = fileInput.files[0]?.name || ''; });
+  document.getElementById('uploadForm').addEventListener('submit', e=>{
+    e.preventDefault();
+    const f = fileInput.files[0];
+    if(!f) return alert('Select a file');
+    // front-end only: store file meta in state.activities
+    a.submission = {name:f.name, uploadedOn: new Date().toISOString()};
+    a.status = 'Submitted';
+    alert('File uploaded (front-end only).');
+    closeModal();
+    renderActivities();
+  });
+}
+
+/* Self-enroll modal (create request) */
+document.getElementById('btnSelfEnroll').addEventListener('click', ()=>{
+  openModal(`<h3>Self-Enroll in Course</h3>
+    <form id="enrollForm">
+      <label>Select Course</label>
+      <select id="selectCourse">${state.availableCourses.map(c=>`<option value="${c.id}">${c.title} — ${c.instructor}</option>`).join('')}</select>
+      <div style="text-align:right;margin-top:12px"><button class="btn btn-primary" type="submit">Request Enroll</button></div>
+    </form>`);
+  document.getElementById('enrollForm').addEventListener('submit', e=>{
+    e.preventDefault();
+    const courseId = parseInt(document.getElementById('selectCourse').value);
+    const course = state.availableCourses.find(c=>c.id===courseId);
+    const now = new Date().toISOString().split('T')[0];
+    // add a pending request
+    state.enrollmentRequests.push({id: Date.now(), courseId: course.id, courseTitle: course.title, requestedOn: now, status:'Pending'});
+    alert('Enrollment request created (front-end only). Admin will approve later.');
+    closeModal();
+    renderOverview(); renderEnrollTable();
+  });
+});
+
+/* Upload Answer button in Activities view */
+document.getElementById('btnUploadAnswer').addEventListener('click', ()=> {
+  // open first pending activity as shortcut
+  const first = state.activities.find(a=>a.status==='Pending');
+  if(first) openUpload(first.id);
+  else alert('No pending activities to upload.');
+});
+
+/* Profile save */
+document.getElementById('fileProfile').addEventListener('change', e=>{
+  const f = e.target.files[0];
+  if(!f) return;
+  const r = new FileReader();
+  r.onload = ()=>{ state.profile.avatar = r.result; renderProfileHeader(); };
+  r.readAsDataURL(f);
+});
+document.getElementById('profileForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const name = document.getElementById('inpName').value.trim();
+  const email = document.getElementById('inpEmail').value.trim();
+  const contact = document.getElementById('inpContact').value.trim();
+  const bio = document.getElementById('inpBio').value.trim();
+  if(!name||!email) return alert('Name and email required');
+  state.profile.name = name; state.profile.email = email; state.profile.contact = contact; state.profile.bio = bio;
+  alert('Profile saved (front-end only).');
+  renderProfileHeader();
+  showView('profile');
+});
+
+/* Modal helpers */
+const backdrop = document.getElementById('backdrop');
+const modalInner = document.getElementById('modalInner');
+document.getElementById('backdropClose').addEventListener('click', closeModal);
+backdrop.addEventListener('click', e=>{ if(e.target===backdrop) closeModal(); });
+function openModal(html){ modalInner.innerHTML = html; backdrop.classList.add('open'); }
+function closeModal(){ backdrop.classList.remove('open'); modalInner.innerHTML=''; }
+
+/* Toggle sidebar for small screens */
+document.getElementById('toggleSidebar').addEventListener('click', ()=> document.getElementById('sidebar').classList.toggle('open'));
+
+/* ============================
+   Initial render
+   ============================ */
+function refreshAll(){
+  renderProfileHeader();
+  renderOverview();
+  renderCourses();
+  renderActivities();
+  renderEnrollTable();
+}
+refreshAll();
+showView('overview');
+
+/* ============================
+   Notes for backend later:
+   - Replace state modifications with fetch()/axios calls to your API.
+   - For file uploads, send FormData to server and use returned file URL.
+   - Regularly refresh data after server responses.
+   ============================ */
+</script>
+</body>
+</html>
