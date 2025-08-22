@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard - ELMS</title>
+<link rel="stylesheet" href="../CSS/admin.css"> <!-- Optional external CSS -->
+</head>
+<body>
+
+<div class="sidebar">
+  <h2>Admin Panel</h2>
+  <a href="#users">User Management</a>
+  <a href="#courses">Course Management</a>
+  <a href="#enrollments">Enrollment Requests</a>
+  <a href="#activities">Activities & Submissions</a>
+</div>
+
+<div class="main">
+  <div class="header">
+    <div class="profile-icon" onclick="openProfile()">
+      <img src="https://via.placeholder.com/40" alt="Admin" id="adminPhoto">
+    </div>
+  </div>
+
+  <!-- Profile Modal -->
+  <div id="profileModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeProfile()">&times;</span>
+      <h3>Edit Profile</h3>
+      <form id="profileForm">
+        <label>Profile Picture</label><br>
+        <input type="file" id="photoUpload"><br><br>
+        <label>Name</label>
+        <input type="text" id="adminName" value="Admin User">
+        <label>Email</label>
+        <input type="email" id="adminEmail" value="admin@example.com">
+        <label>Phone</label>
+        <input type="text" id="adminPhone" value="123-456-7890">
+        <label>Bio</label>
+        <textarea id="adminBio">System administrator of ELMS.</textarea>
+        <br>
+        <button type="button" class="btn-primary" onclick="saveProfile()">Save Changes</button>
+        <button type="button" class="btn-logout" onclick="logout()">Log Out</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- User Management -->
+  <section id="users">
+    <h3>User Management</h3>
+    <button class="btn-primary" onclick="openCreateUser()">+ Create User</button>
+    <table id="userTable">
+      <thead>
+        <tr><th>Name</th><th>Role</th><th>Status</th><th>Actions</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <!-- Course Management -->
+  <section id="courses">
+    <h3>Course Management</h3>
+    <button class="btn-primary" onclick="openCreateCourse()">+ Create Course</button>
+    <table id="courseTable">
+      <thead>
+        <tr><th>Course</th><th>Trainer</th><th>Self-Enrollment</th><th>Actions</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <!-- Enrollment Requests -->
+  <section id="enrollments">
+    <h3>Enrollment Requests</h3>
+    <table id="enrollmentTable">
+      <thead>
+        <tr><th>Trainee</th><th>Course</th><th>Status</th><th>Actions</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <!-- Activities -->
+  <section id="activities">
+    <h3>Activities & Submissions</h3>
+    <table id="activityTable">
+      <thead>
+        <tr><th>Trainee</th><th>Course</th><th>Submission</th><th>Actions</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+</div>
+
+<!-- Link external JS -->
+<script src="../Script/admin.js"></script>
+</body>
+</html>
