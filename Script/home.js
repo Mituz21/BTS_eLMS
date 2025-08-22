@@ -225,3 +225,11 @@ prevBtns.forEach(btn => {
     }
   });
 });
+// Switch from Register → Login
+const openLoginFromRegister = document.getElementById("openLoginFromRegister");
+
+openLoginFromRegister.addEventListener("click", (e) => {
+  e.preventDefault();
+  registerModal.style.display = "none";   // close register modal
+  loginModal.style.display = "flex";       // open login modal (use 'flex' to match openRegister style)
+});

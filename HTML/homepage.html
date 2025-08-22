@@ -50,7 +50,7 @@
   <div class="course-card"
        data-title="Agricultural Crops Production NC II"
        data-desc="Learn crop production, farm tools usage, and sustainable agriculture techniques."
-       data-img="https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg?auto=compress&cs=tinysrgb&h=200"
+       data-img="../icons/Agriculture.jpg"
        data-basic='["Receive and respond to workplace communication", "Work with others", "Demonstrate work values"]'
        data-common='["Apply safety measures", "Use farm tools and equipment"]'
        data-core='["Prepare land for agricultural crop production", "Care and manage crops"]'>
@@ -63,7 +63,7 @@
   <div class="course-card"
        data-title="Automotive Servicing NC I"
        data-desc="Get started with basic automotive maintenance and repair services."
-       data-img="https://images.pexels.com/photos/3806242/pexels-photo-3806242.jpeg?auto=compress&cs=tinysrgb&h=200"
+       data-img="../icons/Automotive.jpg"
        data-basic='["Participate in workplace communication", "Work in team environment"]'
        data-common='["Use automotive hand tools", "Perform mensuration and calculations"]'
        data-core='["Perform under-chassis preventive maintenance", "Service battery and ignition system"]'>
@@ -76,7 +76,7 @@
   <div class="course-card"
        data-title="Bread and Pastry Production NC II"
        data-desc="Master the fundamentals of baking and pastry preparation."
-       data-img="https://images.pexels.com/photos/3026807/pexels-photo-3026807.jpeg?auto=compress&cs=tinysrgb&h=200"
+       data-img="../icons/BreadAndPastry.jpg"
        data-basic='["Receive and respond to workplace communication", "Work with others", "Demonstrate work values"]'
        data-common='["Use of tools, equipment and facilities", "Perform mensuration and calculation"]'
        data-core='["Prepare bakery products", "Prepare pastry products"]'>
@@ -89,7 +89,7 @@
   <div class="course-card"
        data-title="Dressmaking NC II"
        data-desc="Learn how to design, measure, cut, and sew dresses professionally."
-       data-img="https://images.pexels.com/photos/13533622/pexels-photo-13533622.jpeg?auto=compress&cs=tinysrgb&h=200"
+       data-img="../icons/Dressmaking.jpg"
        data-basic='["Receive and respond to workplace communication", "Work with others"]'
        data-common='["Use sewing tools and equipment", "Draft and cut patterns"]'
        data-core='["Sew casual dresses", "Sew skirts and blouses"]'>
@@ -102,7 +102,7 @@
   <div class="course-card"
        data-title="Hairdressing NC II"
        data-desc="Gain skills in hair cutting, coloring, styling, and salon operations."
-       data-img="https://images.pexels.com/photos/3998481/pexels-photo-3998481.jpeg?auto=compress&cs=tinysrgb&h=200"
+       data-img="../icons/Hairdressing.jpg"
        data-basic='["Participate in workplace communication", "Work in team environment"]'
        data-common='["Use hairdressing tools", "Practice personal hygiene"]'
        data-core='["Perform hair cutting", "Perform hair coloring", "Perform hair styling"]'>
@@ -115,7 +115,7 @@
   <div class="course-card"
        data-title="Japanese Language and Culture"
        data-desc="Study basic Nihongo and understand essential aspects of Japanese culture."
-       data-img="https://images.pexels.com/photos/613848/pexels-photo-613848.jpeg?auto=compress&cs=tinysrgb&h=200"
+       data-img="../icons/JapaneseLanguageAndCulture.jpg"
        data-basic='["Participate in workplace communication", "Work in team environment"]'
        data-common='["Demonstrate cultural sensitivity", "Practice correct pronunciation"]'
        data-core='["Speak basic Nihongo", "Understand Japanese customs and etiquette"]'>
@@ -128,7 +128,7 @@
   <div class="course-card"
        data-title="Driving NC II"
        data-desc="Develop safe driving skills and gain vehicle operation knowledge."
-       data-img="https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&h=200"
+       data-img="../icons/Driving.png"
        data-basic='["Observe road safety", "Work in team environment"]'
        data-common='["Check and inspect vehicles", "Perform basic troubleshooting"]'
        data-core='["Operate light vehicles", "Perform defensive driving techniques"]'>
@@ -141,7 +141,7 @@
   <div class="course-card"
        data-title="Tailoring NC II"
        data-desc="Train in precision tailoring, pattern making, and garment construction."
-       data-img="https://images.pexels.com/photos/2801993/pexels-photo-2801993.jpeg?auto=compress&cs=tinysrgb&h=200"
+       data-img="../icons/Tailoring.jpg"
        data-basic='["Participate in workplace communication", "Work with others"]'
        data-common='["Use of tools and equipment", "Practice proper cutting techniques"]'
        data-core='["Construct men’s trousers", "Construct polo shirts and barong"]'>
@@ -181,8 +181,8 @@
     </div>
   </section>
  
-  <!-- Login Modal -->
- <div id="loginModal" class="modal">
+ <!-- Login Modal -->
+<div id="loginModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
     <h2>Login</h2>
@@ -192,62 +192,55 @@
         <input type="password" id="loginPassword" placeholder="Password" required />
       </div>
       <button type="submit">Login</button>
+      
+      <!-- Forgot Password link -->
+      <p class="forgot-password">
+        <a href="#" id="forgotPassword">Forgot Password?</a>
+      </p>
       <p class="create-account">
-        Don't have an account? <a href="#" id="openRegister">Create one</a>
+        Don't have an account? <a href="#" id="openRegister">Create Account</a>
       </p>
     </form>
   </div>
 </div>
- 
- 
   <!-- Registration Modal -->
-  <div id="registerModal" class="modal">
-    <div class="modal-content">
-      <span class="close-register">&times;</span>
-      <form id="registerForm">
-        <!-- Step 1: Personal Info -->
-        <div class="form-step form-step-active">
-          <h3>Personal Information</h3>
-          <input type="text" name="lastname" placeholder="Last Name" required />
-          <input type="text" name="firstname" placeholder="First Name" required />
-          <input type="text" name="middlename" placeholder="Middle Name" />
-          <input type="text" name="suffix" placeholder="Suffix" />
-          <input type="number" name="age" placeholder="Age" required />
-          <input type="date" name="dob" placeholder="Date of Birth" required />
-          <button type="button" class="next-step">Next →</button>
+<div id="registerModal" class="modal">
+  <div class="modal-content">
+    <span class="close-register">&times;</span>
+    <form id="registerForm">
+      <div class="form-step form-step-active">
+        <h3>Create Account</h3>
+        <input type="text" name="fullname" placeholder="Full Name" required />
+        <input type="email" id="regEmail" name="email" placeholder="Email" required />
+        <input type="tel" name="contact" placeholder="Contact Number" required />
+        <div class="password-wrapper">
+          <input type="password" id="regPassword" name="password" placeholder="Password" required />
         </div>
- 
-        <!-- Step 2: Address -->
-        <div class="form-step">
-          <h3>Address</h3>
-          <input type="text" name="house" placeholder="House / Building Number" required />
-          <input type="text" name="barangay" placeholder="Barangay" required />
-          <input type="text" name="city" placeholder="Municipality / City" required />
-          <input type="text" name="postalcode" placeholder="Postal Code" required />
-          <input type="text" name="province" placeholder="Province" required />
-          <input type="text" name="region" placeholder="Region" required />
-          <button type="button" class="prev-step">← Back</button>
-          <button type="button" class="next-step">Next →</button>
+        <div class="password-wrapper">
+          <input type="password" id="regConfirmPassword" name="confirmPassword" placeholder="Confirm Password" required />
         </div>
- 
-        <!-- Step 3: Account Info -->
-        <div class="form-step">
-          <h3>Account Information</h3>
-          <input type="email" id="regEmail" name="email" placeholder="Email" required />
-          <input type="tel" name="contact" placeholder="Contact Number" required />
-          <div class="password-wrapper">
-            <input type="password" id="regPassword" name="password" placeholder="Password" required />
-          </div>
-          <div class="password-wrapper">
-            <input type="password" id="regConfirmPassword" name="confirmPassword" placeholder="Confirm Password" required />
-          </div>
-          <small>Password must be at least 8 characters, contain one uppercase letter, one number, and one special character (*-_.).</small>
-          <button type="button" class="prev-step">← Back</button>
-          <button type="submit">Register</button>
+        <small>Password must be at least 8 characters, contain one uppercase letter, one number, and one special character (*-_.).</small>
+        
+        <!-- ✅ Terms and Conditions -->
+        <div class="terms">
+          <input type="checkbox" id="termsCheckbox" required />
+          <label for="termsCheckbox">
+            I agree to the <a href="#" id="openTerms">Terms & Conditions</a>
+          </label>
         </div>
-      </form>
-    </div>
+
+        <button type="submit">Register</button>
+
+        <!-- ✅ Already have account link -->
+        <p class="already-account">
+          Already have an account? <a href="#" id="openLoginFromRegister">Log In</a>
+        </p>
+      </div>
+    </form>
   </div>
+</div>
+
+
  
   <!-- About Us Section -->
   <section id="about" class="about">
