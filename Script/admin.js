@@ -1,149 +1,106 @@
-// ─── Profile Modal Functions ───
-function openProfile() {
-  document.getElementById('profileModal').style.display = 'block';
-}
-function closeProfile() {
-  document.getElementById('profileModal').style.display = 'none';
-}
-function saveProfile() {
-  const name = document.getElementById('adminName').value;
-  const email = document.getElementById('adminEmail').value;
-  const phone = document.getElementById('adminPhone').value;
-  const bio = document.getElementById('adminBio').value;
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.getElementById("hamburger");
+  const sidebar = document.getElementById("sidebar");
+  const profileDropdown = document.getElementById("profileDropdown");
+  const notifDropdown = document.getElementById("notifDropdown");
 
-  console.log("Profile Updated:", { name, email, phone, bio });
+  const profileMenu = profileDropdown.querySelector(".dropdown-menu");
+  const notifMenu = notifDropdown.querySelector(".notif-menu");
 
-  const file = document.getElementById('photoUpload').files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      document.getElementById('adminPhoto').src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
-
-  alert("Profile updated successfully!");
-  closeProfile();
-}
-
-// ─── Sample Data ───
-const users = [
-  {id:1, name:"John Doe", role:"Trainee", status:"Active"},
-  {id:2, name:"Jane Smith", role:"Trainer", status:"Active"}
-];
-
-const courses = [
-  {id:1, name:"HTML Basics", trainer:"Jane Smith", selfEnrollment:true},
-  {id:2, name:"JavaScript Advanced", trainer:"", selfEnrollment:false}
-];
-
-const enrollments = [
-  {id:1, trainee:"Mark Lee", course:"HTML Basics", status:"Pending"}
-];
-
-const activities = [
-  {id:1, trainee:"John Doe", course:"HTML Basics", submission:"Assignment 1"}
-];
-
-// ─── Render Functions ───
-function renderUsers() {
-  const tbody = document.querySelector('#userTable tbody');
-  tbody.innerHTML = '';
-  users.forEach(u => {
-    tbody.innerHTML += `
-      <tr>
-        <td>${u.name}</td>
-        <td>${u.role}</td>
-        <td>${u.status}</td>
-        <td>
-          <button onclick="editUser(${u.id})">Edit</button>
-          <button class="btn-danger" onclick="archiveUser(${u.id})">Archive</button>
-        </td>
-      </tr>
-    `;
+  // ===== Sidebar toggle =====
+  hamburger.addEventListener("click", () => {
+    sidebar.classList.toggle("active");
   });
-}
 
-function renderCourses() {
-  const tbody = document.querySelector('#courseTable tbody');
-  tbody.innerHTML = '';
-  courses.forEach(c => {
-    tbody.innerHTML += `
-      <tr>
-        <td>${c.name}</td>
-        <td>${c.trainer || 'Unassigned'}</td>
-        <td>${c.selfEnrollment ? 'Enabled' : 'Disabled'}</td>
-        <td>
-          <button onclick="assignTrainer(${c.id})">Assign Trainer</button>
-          <button onclick="toggleSelfEnrollment(${c.id})">
-            ${c.selfEnrollment ? 'Disable' : 'Enable'} Self-Enroll
-          </button>
-        </td>
-      </tr>
-    `;
+  // ===== Profile dropdown toggle =====
+  profileDropdown.addEventListener("click", (e) => {
+    e.stopPropagation();
+    profileMenu.style.display =
+      profileMenu.style.display === "block" ? "none" : "block";
+    notifMenu.style.display = "none";
   });
-}
 
-function renderEnrollments() {
-  const tbody = document.querySelector('#enrollmentTable tbody');
-  tbody.innerHTML = '';
-  enrollments.forEach(e => {
-    tbody.innerHTML += `
-      <tr>
-        <td>${e.trainee}</td>
-        <td>${e.course}</td>
-        <td>${e.status}</td>
-        <td>
-          <button onclick="approveEnrollment(${e.id})">Approve</button>
-          <button class="btn-danger" onclick="rejectEnrollment(${e.id})">Reject</button>
-        </td>
-      </tr>
-    `;
+  // ===== Notification dropdown toggle =====
+  notifDropdown.addEventListener("click", (e) => {
+    e.stopPropagation();
+    notifMenu.style.display =
+      notifMenu.style.display === "block" ? "none" : "block";
+    profileMenu.style.display = "none";
   });
-}
 
-function renderActivities() {
-  const tbody = document.querySelector('#activityTable tbody');
-  tbody.innerHTML = '';
-  activities.forEach(a => {
-    tbody.innerHTML += `
-      <tr>
-        <td>${a.trainee}</td>
-        <td>${a.course}</td>
-        <td>${a.submission}</td>
-        <td>
-          <button onclick="viewSubmission(${a.id})">View</button>
-        </td>
-      </tr>
-    `;
+  // ===== Close dropdowns if clicked outside =====
+  document.addEventListener("click", () => {
+    profileMenu.style.display = "none";
+    notifMenu.style.display = "none";
   });
-}
 
-// ─── Action Handlers ───
-function openCreateUser(){ alert('Open Create User Modal'); }
-function editUser(id){ alert('Edit User '+id); }
-function archiveUser(id){ alert('Archive User '+id); }
-function openCreateCourse(){ alert('Open Create Course Modal'); }
-function assignTrainer(courseId){ alert('Assign Trainer to Course '+courseId); }
-function toggleSelfEnrollment(courseId){
-  const course = courses.find(c=>c.id===courseId);
-  course.selfEnrollment = !course.selfEnrollment;
-  renderCourses();
-}
-function approveEnrollment(id){ alert('Enrollment Approved '+id); }
-function rejectEnrollment(id){ alert('Enrollment Rejected '+id); }
-function viewSubmission(id){ alert('Viewing Submission '+id); }
+// ===== Dashboard / News toggle =====
+const toggleButtons = document.querySelectorAll(".home-toggle .toggle-btn");
+const dashboardView = document.getElementById("dashboardView");
+const newsView = document.getElementById("news");
 
-// ─── Initial Render ───
-renderUsers();
-renderCourses();
-renderEnrollments();
-renderActivities();
+toggleButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    toggleButtons.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
 
-function logout() {
-  // Optional: clear any stored session or localStorage info
-  console.log("User logged out");
+    if (btn.getAttribute("data-tab") === "dashboardView") {
+      dashboardView.style.display = "block";
+      newsView.style.display = "none";
+    } else {
+      dashboardView.style.display = "none";
+      newsView.style.display = "block";
+    }
+  });
+});
 
-  // Redirect to login page or homepage
-  window.location.href = "../HTML/homepage.html"; // change to your login page
-}
+
+  // ===== Courses toggle =====
+  const courseButtons = document.querySelectorAll(
+    ".courses-toggle .toggle-btn"
+  );
+  const courseTabs = document.querySelectorAll(".courses-tab");
+
+  courseButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      courseButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      courseTabs.forEach((tab) => (tab.style.display = "none"));
+      const tabId = btn.getAttribute("data-course-tab");
+      document.getElementById(tabId).style.display =
+        tabId === "archived" ? "block" : "flex";
+    });
+  });
+
+ // ===== Sidebar navigation toggle =====
+const sidebarLinks = document.querySelectorAll(".sidebar nav a");
+
+// These are the main sections (dashboard, trainer, trainee, etc.)
+const mainSections = document.querySelectorAll("main > .tab-content");
+
+sidebarLinks.forEach((link) => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    const targetTab = link.getAttribute("data-tab");
+
+    // Hide all main sections
+    mainSections.forEach((section) => (section.style.display = "none"));
+
+    if (targetTab === "dashboard") {
+      // Show dashboard section (always includes dashboard/news + courses)
+      document.getElementById("dashboard").style.display = "block";
+
+      // Default to DashboardView visible, News hidden
+      document.getElementById("dashboardView").style.display = "block";
+      document.getElementById("news").style.display = "none";
+    } else {
+      // Show selected section normally
+      const activeTab = document.getElementById(targetTab);
+      if (activeTab) {
+        activeTab.style.display = "block";
+      }
+    }
+  });
+});
+});

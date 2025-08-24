@@ -1,99 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Dashboard - ELMS</title>
-<link rel="stylesheet" href="../CSS/admin.css"> <!-- Optional external CSS -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - eLMS</title>
+  <link rel="stylesheet" href="../CSS/admin.css">
 </head>
 <body>
 
-<div class="sidebar">
-  <h2>Admin Panel</h2>
-  <a href="#users">User Management</a>
-  <a href="#courses">Course Management</a>
-  <a href="#enrollments">Enrollment Requests</a>
-  <a href="#activities">Activities & Submissions</a>
-</div>
-
-<div class="main">
-  <div class="header">
-    <div class="profile-icon" onclick="openProfile()">
-      <img src="https://via.placeholder.com/40" alt="Admin" id="adminPhoto">
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="logo">
+      <img src="../icons/logo.png" alt="Logo"> <!-- Replace with your logo -->
     </div>
+    <div class="header-right">
+      <div class="profile-dropdown" id="profileDropdown">
+        <span class="login-text">Admin</span>
+        <img src="../icons/ProfileLogo.jpg" alt="Profile" class="profile-icon">
+        <ul class="dropdown-menu">
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Help</a></li>
+          <li><a href="../HTML/homepage.html">Logout</a></li>
+        </ul>
+      </div>
+        <!-- Notification Dropdown -->
+    <div class="notif-dropdown" id="notifDropdown">
+      <img src="../icons/notiflogo.png" alt="Notifications" class="notif-icon">
+     <ul class="notif-menu">
+      <li>No new notifications</li>
+      <!-- Example notifications -->
+      <!-- <li>New user registered</li>
+      <li>Course updated</li> -->
+      </ul>
+    </div>
+      <button class="hamburger" id="hamburger">&#9776;</button>
+    </div>
+  </header>
+
+  <!-- ===== SIDEBAR ===== -->
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <a href="#" data-tab="dashboard">Home</a>
+    <a href="#" data-tab="trainer">Trainer</a>
+    <a href="#" data-tab="trainee">Trainee</a>
+    <a href="#" data-tab="available">Courses</a>
+    <a href="#" data-tab="guest">Guest</a>
+    <a href="#" data-tab="request">Enrollment</a>
+  </nav>
+</aside>
+
+
+  <!-- ===== MAIN CONTENT ===== -->
+<main class="main-content">
+
+  <!-- ===== HOME SECTION (Dashboard + News + Courses) ===== -->
+  <section class="tab-content" id="dashboard">
+    <!-- Toggle Section: Dashboard / News -->
+    <div class="home-toggle">
+      <button class="toggle-btn active" data-tab="dashboardView">Dashboard</button>
+      <button class="toggle-btn" data-tab="news">News</button>
+    </div>
+
+    <!-- Dashboard View -->
+    <div class="tab-content" id="dashboardView">
+      <p>This is your dashboard view.</p>
+    </div>
+
+    <!-- News View -->
+    <div class="tab-content" id="news" style="display: none;">
+      <div class="news-header">
+        <h2>News</h2>
+        <button class="post-btn">+ Post</button>
+      </div>
+      <p>News posts will appear here...</p>
+    </div>
+
+    <!-- Courses Section -->
+    <section class="courses-section">
+      <h2>Courses</h2>
+
+      <!-- Toggle Available / Archived -->
+      <div class="courses-toggle">
+        <button class="toggle-btn active" data-course-tab="available">Available</button>
+        <button class="toggle-btn" data-course-tab="archived">Archived</button>
+      </div>
+
+      <!-- Available Courses -->
+      <div class="courses-tab" id="available">
+        <div class="course-card">
+          <img src="../icons/Agriculture.jpg" alt="Course 1">
+          <p>Course 1</p>
+        </div>
+        <div class="course-card">
+          <img src="../icons/Automotive.jpg" alt="Course 2">
+          <p>Course 2</p>
+        </div>
+        <div class="course-card">
+          <img src="../icons/BreadAndPastry.jpg" alt="Course 3">
+          <p>Course 3</p>
+        </div>
+        <div class="course-card">
+          <img src="../icons/JapaneseLanguageAndCulture.jpg" alt="Course 4">
+          <p>Course 4</p>
+        </div>
+        <div class="course-card">
+          <img src="../icons/Dressmaking.jpg" alt="Course 5">
+          <p>Course 5</p>
+        </div>
+        <div class="course-card">
+          <img src="../icons/Driving.png" alt="Course 6">
+          <p>Course 6</p>
+        </div>
+        <div class="course-card">
+          <img src="../icons/Tailoring.jpg" alt="Course 7">
+          <p>Course 7</p>
+        </div>
+        <div class="course-card">
+          <img src="../icons/Hairdressing.jpg" alt="Course 8">
+          <p>Course 8</p>
+        </div>
+      </div>
+
+      <!-- Archived Courses -->
+      <div class="courses-tab" id="archived" style="display: none;">
+        <p>No archived courses yet.</p>
+      </div>
+    </section>
+  </section>
+
+  <!-- ===== TRAINER SECTION ===== -->
+<section class="tab-content" id="trainer" style="display: none;">
+  <div class="table-header">
+    <h2>Trainers</h2>
+    <button class="create-btn">+ Create Trainer</button>
   </div>
 
-  <!-- Profile Modal -->
-  <div id="profileModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeProfile()">&times;</span>
-      <h3>Edit Profile</h3>
-      <form id="profileForm">
-        <label>Profile Picture</label><br>
-        <input type="file" id="photoUpload"><br><br>
-        <label>Name</label>
-        <input type="text" id="adminName" value="Admin User">
-        <label>Email</label>
-        <input type="email" id="adminEmail" value="admin@example.com">
-        <label>Phone</label>
-        <input type="text" id="adminPhone" value="123-456-7890">
-        <label>Bio</label>
-        <textarea id="adminBio">System administrator of ELMS.</textarea>
-        <br>
-        <button type="button" class="btn-primary" onclick="saveProfile()">Save Changes</button>
-        <button type="button" class="btn-logout" onclick="logout()">Log Out</button>
-      </form>
-    </div>
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>Username</th>
+        <th>Password (Hashed)</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Date Created</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>101</td>
+        <td>John Doe</td>
+        <td>$2y$10$N9qo8uLOickgx2ZMRZo5e.</td>
+        <td>Trainer</td>
+        <td><span class="status active">Active</span></td>
+        <td>2025-08-01</td>
+        <td>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td>102</td>
+        <td>Jane Smith</td>
+        <td>$2y$10$7sTjA3MvqA12sKj5zLq7u.</td>
+        <td>Trainer</td>
+        <td><span class="status inactive">Inactive</span></td>
+        <td>2025-07-25</td>
+        <td>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===== TRAINEE SECTION ===== -->
+<section class="tab-content" id="trainee" style="display: none;">
+  <div class="table-header">
+    <h2>Trainees</h2>
+    <button class="create-btn">+ Create Trainee</button>
   </div>
 
-  <!-- User Management -->
-  <section id="users">
-    <h3>User Management</h3>
-    <button class="btn-primary" onclick="openCreateUser()">+ Create User</button>
-    <table id="userTable">
-      <thead>
-        <tr><th>Name</th><th>Role</th><th>Status</th><th>Actions</th></tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>Username</th>
+        <th>Password (Hashed)</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Date Created</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>201</td>
+        <td>Alice Brown</td>
+        <td>$2y$10$Jd9f2uLK8ghR0ZpQ7aB5v.</td>
+        <td>Trainee</td>
+        <td><span class="status active">Active</span></td>
+        <td>2025-07-15</td>
+        <td>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td>202</td>
+        <td>Bob Green</td>
+        <td>$2y$10$4kLp3vDJ9mzF0QsA8nC7e.</td>
+        <td>Trainee</td>
+        <td><span class="status inactive">Inactive</span></td>
+        <td>2025-07-20</td>
+        <td>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
 
-  <!-- Course Management -->
-  <section id="courses">
-    <h3>Course Management</h3>
-    <button class="btn-primary" onclick="openCreateCourse()">+ Create Course</button>
-    <table id="courseTable">
-      <thead>
-        <tr><th>Course</th><th>Trainer</th><th>Self-Enrollment</th><th>Actions</th></tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
+<!-- ===== GUEST SECTION ===== -->
+<section class="tab-content" id="guest" style="display: none;">
+  <div class="table-header">
+    <h2>Guests</h2>
+    <button class="create-btn">+ Create Guest</button>
+  </div>
 
-  <!-- Enrollment Requests -->
-  <section id="enrollments">
-    <h3>Enrollment Requests</h3>
-    <table id="enrollmentTable">
-      <thead>
-        <tr><th>Trainee</th><th>Course</th><th>Status</th><th>Actions</th></tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
-
-  <!-- Activities -->
-  <section id="activities">
-    <h3>Activities & Submissions</h3>
-    <table id="activityTable">
-      <thead>
-        <tr><th>Trainee</th><th>Course</th><th>Submission</th><th>Actions</th></tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
-</div>
-
-<!-- Link external JS -->
-<script src="../Script/admin.js"></script>
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>Username</th>
+        <th>Password (Hashed)</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Date Created</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>301</td>
+        <td>Visitor1</td>
+        <td>$2y$10$HkR7pOJl2nF1QsK3aV9u.</td>
+        <td>Guest</td>
+        <td><span class="status active">Active</span></td>
+        <td>2025-06-20</td>
+        <td>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td>302</td>
+        <td>Visitor2</td>
+        <td>$2y$10$AbC3vKLo9qN1pXrR6eT2z.</td>
+        <td>Guest</td>
+        <td><span class="status inactive">Inactive</span></td>
+        <td>2025-06-25</td>
+        <td>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+</main>
+  <script src="../Script/admin.js"></script>
 </body>
 </html>
