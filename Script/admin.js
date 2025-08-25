@@ -34,31 +34,28 @@ document.addEventListener("DOMContentLoaded", () => {
     notifMenu.style.display = "none";
   });
 
-// ===== Dashboard / News toggle =====
-const toggleButtons = document.querySelectorAll(".home-toggle .toggle-btn");
-const dashboardView = document.getElementById("dashboardView");
-const newsView = document.getElementById("news");
+  // ===== Dashboard / News toggle =====
+  const toggleButtons = document.querySelectorAll(".home-toggle .toggle-btn");
+  const dashboardView = document.getElementById("dashboardView");
+  const newsView = document.getElementById("news");
 
-toggleButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    toggleButtons.forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
+  toggleButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      toggleButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
 
-    if (btn.getAttribute("data-tab") === "dashboardView") {
-      dashboardView.style.display = "block";
-      newsView.style.display = "none";
-    } else {
-      dashboardView.style.display = "none";
-      newsView.style.display = "block";
-    }
+      if (btn.getAttribute("data-tab") === "dashboardView") {
+        dashboardView.style.display = "block";
+        newsView.style.display = "none";
+      } else {
+        dashboardView.style.display = "none";
+        newsView.style.display = "block";
+      }
+    });
   });
-});
 
-
-  // ===== Courses toggle =====
-  const courseButtons = document.querySelectorAll(
-    ".courses-toggle .toggle-btn"
-  );
+  // ===== Courses toggle (inside dashboard) =====
+  const courseButtons = document.querySelectorAll(".courses-toggle .toggle-btn");
   const courseTabs = document.querySelectorAll(".courses-tab");
 
   courseButtons.forEach((btn) => {
@@ -73,34 +70,88 @@ toggleButtons.forEach((btn) => {
     });
   });
 
- // ===== Sidebar navigation toggle =====
-const sidebarLinks = document.querySelectorAll(".sidebar nav a");
+  // ===== Sidebar navigation toggle =====
+  const sidebarLinks = document.querySelectorAll(".sidebar nav a");
+  const mainSections = document.querySelectorAll("main > .tab-content");
 
-// These are the main sections (dashboard, trainer, trainee, etc.)
-const mainSections = document.querySelectorAll("main > .tab-content");
-
-sidebarLinks.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
+  sidebarLinks.forEach((link) => {
     const targetTab = link.getAttribute("data-tab");
+    if (!targetTab) return; // ignore links like "Courses" without data-tab
 
-    // Hide all main sections
-    mainSections.forEach((section) => (section.style.display = "none"));
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
 
-    if (targetTab === "dashboard") {
-      // Show dashboard section (always includes dashboard/news + courses)
-      document.getElementById("dashboard").style.display = "block";
+      // Hide all main sections
+      mainSections.forEach((section) => (section.style.display = "none"));
 
-      // Default to DashboardView visible, News hidden
-      document.getElementById("dashboardView").style.display = "block";
-      document.getElementById("news").style.display = "none";
-    } else {
-      // Show selected section normally
-      const activeTab = document.getElementById(targetTab);
-      if (activeTab) {
-        activeTab.style.display = "block";
+      // Show dashboard or other section
+      if (targetTab === "dashboard") {
+        document.getElementById("dashboard").style.display = "block";
+        document.getElementById("dashboardView").style.display = "block";
+        document.getElementById("news").style.display = "none";
+      } else {
+        const activeTab = document.getElementById(targetTab);
+        if (activeTab) activeTab.style.display = "block";
       }
+    });
+  });
+
+  // ===== Courses submenu toggle in sidebar =====
+  const coursesMenu = document.querySelector(".courses-menu");
+  const coursesToggle = coursesMenu.querySelector("a"); // the main Courses link
+
+  coursesToggle.addEventListener("click", (e) => {
+    e.preventDefault(); // prevent navigating / opening main section
+    coursesMenu.classList.toggle("active");
+
+    // Optional: change arrow direction
+    if (coursesMenu.classList.contains("active")) {
+      coursesToggle.textContent = "Courses ▾";
+    } else {
+      coursesToggle.textContent = "Courses ▸";
     }
   });
 });
+// Select all course cards in dashboard
+const courseCards = document.querySelectorAll(".courses-tab .course-card");
+
+courseCards.forEach(card => {
+  card.addEventListener("click", () => {
+    const courseName = card.querySelector("p").textContent;
+
+    // Show batches section
+    const batchesSection = document.getElementById("batchesSection");
+    batchesSection.style.display = "block";
+
+    // Update course title
+    document.getElementById("selectedCourse").textContent = courseName;
+
+    // Populate batches dynamically
+    const batchesList = batchesSection.querySelector(".batches-list");
+    batchesList.innerHTML = ""; // clear previous batches
+
+    ["Batch 1", "Batch 2"].forEach(batch => {
+      const batchDiv = document.createElement("div");
+      batchDiv.className = "batch-card";
+      batchDiv.textContent = batch;
+      batchesList.appendChild(batchDiv);
+    });
+
+    // Hide other main sections
+    document.querySelectorAll("main > .tab-content").forEach(sec => {
+      if (sec.id !== "batchesSection") sec.style.display = "none";
+    });
+  });
 });
+
+// Handle Create Batch button
+document.querySelector(".create-batch-btn").addEventListener("click", () => {
+  const batchName = prompt("Enter batch name:");
+  if (batchName) {
+    const batchDiv = document.createElement("div");
+    batchDiv.className = "batch-card";
+    batchDiv.textContent = batchName;
+    document.querySelector(".batches-list").appendChild(batchDiv);
+  }
+});
+

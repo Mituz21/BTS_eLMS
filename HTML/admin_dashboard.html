@@ -43,12 +43,27 @@
     <a href="#" data-tab="dashboard">Home</a>
     <a href="#" data-tab="trainer">Trainer</a>
     <a href="#" data-tab="trainee">Trainee</a>
-    <a href="#" data-tab="available">Courses</a>
+
+    <!-- Courses Toggle -->
+   <div class="courses-menu">
+  <a href="#" class="courses-toggle">Courses ▸</a>
+  <div class="courses-submenu">
+    <a href="#">Agriculture</a>
+    <a href="#">Automotive</a>
+    <a href="#">Bread & Pastry</a>
+    <a href="#">Japanese Language & Culture</a>
+    <a href="#">Dressmaking</a>
+    <a href="#">Driving</a>
+    <a href="#">Tailoring</a>
+    <a href="#">Hairdressing</a>
+  </div>
+</div>
+
+
     <a href="#" data-tab="guest">Guest</a>
     <a href="#" data-tab="request">Enrollment</a>
   </nav>
 </aside>
-
 
   <!-- ===== MAIN CONTENT ===== -->
 <main class="main-content">
@@ -127,8 +142,15 @@
       </div>
     </section>
   </section>
+  <section class="tab-content" id="batchesSection" style="display:none;">
+  <div class="batches-header">
+    <h2 id="selectedCourse">Course Name</h2>
+    <button class="create-batch-btn">+ Create Batch</button>
+  </div>
+  <div class="batches-list"></div>
+</section>
 
-  <!-- ===== TRAINER SECTION ===== -->
+<!-- ===== TRAINER SECTION ===== -->
 <section class="tab-content" id="trainer" style="display: none;">
   <div class="table-header">
     <h2>Trainers</h2>
@@ -228,7 +250,6 @@
 <section class="tab-content" id="guest" style="display: none;">
   <div class="table-header">
     <h2>Guests</h2>
-    <button class="create-btn">+ Create Guest</button>
   </div>
 
   <table class="styled-table">
@@ -271,6 +292,44 @@
     </tbody>
   </table>
 </section>
+<!-- ===== ENROLLMENT REQUESTS SECTION ===== -->
+<section class="tab-content" id="request" style="display: none;">
+ <div class="table-header">
+ <h2>Enrollment Requests</h2>
+</div>
+ 
+ <table class="styled-table">
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>Email</th>
+        <th>Course Requested</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>101</td>
+        <td>john.doe@student.edu</td>
+        <td>Database Management</td>
+        <td>
+          <button class="btn accept">Accept</button>
+          <button class="btn decline">Decline</button>
+        </td>
+      </tr>
+      <tr>
+        <td>102</td>
+        <td>jane.smith@student.edu</td>
+        <td>Web Development</td>
+        <td>
+          <button class="btn accept">Accept</button>
+          <button class="btn decline">Decline</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
 </main>
   <script src="../Script/admin.js"></script>
 </body>
