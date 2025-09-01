@@ -531,8 +531,6 @@ body {
 .batch-card:hover {
   transform: translateY(-3px);
 }
-
-
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .sidebar {
