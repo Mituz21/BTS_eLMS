@@ -1,281 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ELMS — Guest Dashboard</title>
-<style>
-  :root {
-    --bg: #f3f8ff;
-    --panel: #e6f0ff;
-    --accent: #004080;
-    --muted: #6f7b8a;
-    --border: #d6deea;
-  }
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    font-family: Inter, "Segoe UI", Arial, sans-serif;
-    background: var(--bg);
-    color: #111;
-  }
-  .app {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
-  header {
-    background: var(--panel);
-    padding: 12px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--border);
-  }
-  .logo {
-    font-weight: 800;
-    font-size: 1.4rem;
-    color: var(--accent);
-  }
-  nav a {
-    margin-left: 18px;
-    color: var(--accent);
-    font-weight: 700;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  nav a:hover {
-    text-decoration: underline;
-  }
-  main {
-    flex: 1;
-    padding: 24px;
-    max-width: 960px;
-    margin: 0 auto;
-  }
-  h1,
-  h2,
-  h3 {
-    color: var(--accent);
-  }
-  .section {
-    margin-bottom: 36px;
-  }
-  .btn {
-    background: var(--accent);
-    border: none;
-    border-radius: 8px;
-    color: white;
-    font-weight: 700;
-    padding: 10px 16px;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  .btn:disabled {
-    background: var(--border);
-    cursor: not-allowed;
-  }
-  input,
-  select,
-  textarea {
-    width: 100%;
-    padding: 10px 12px;
-    margin-top: 6px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    font-size: 1rem;
-    font-family: inherit;
-  }
-  label {
-    font-weight: 700;
-  }
-  .muted {
-    color: var(--muted);
-    font-size: 0.9rem;
-  }
-  /* Course list */
-  .course-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .course-item {
-    background: var(--panel);
-    border-radius: 10px;
-    padding: 14px 18px;
-    margin-bottom: 12px;
-  }
-  .course-title {
-    font-weight: 800;
-    font-size: 1.1rem;
-    color: var(--accent);
-  }
-  .course-desc {
-    margin-top: 6px;
-    font-size: 0.95rem;
-    color: var(--muted);
-  }
-  /* Form */
-  form {
-    max-width: 400px;
-    background: var(--panel);
-    padding: 20px;
-    border-radius: 10px;
-  }
-  /* Responsive */
-  @media (max-width: 640px) {
-    main {
-      padding: 12px;
-    }
-    header {
-      flex-direction: column;
-      gap: 10px;
-      align-items: flex-start;
-    }
-    nav a {
-      margin-left: 0;
-      margin-right: 16px;
-    }
-  }
-  /* Notification box */
-  #notif {
-    background: #d9f0ff;
-    border: 1px solid #70b4ff;
-    border-radius: 8px;
-    padding: 12px 18px;
-    margin-bottom: 20px;
-    color: #004080;
-    display: none;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guest Dashboard - eLMS</title>
+  <link rel="stylesheet" href="../CSS/admin.css"> <!-- Using the same admin CSS -->
 </head>
 <body>
 
-<div class="app">
-  <header>
-    <div class="logo">ELMS Guest</div>
-    <nav aria-label="Guest navigation">
-      <a href="#" id="navHome">Home</a>
-      <a href="#" id="navCourses">Public Courses</a>
-      <a href="#" id="navSignUp">Sign Up</a>
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+  <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+    <img src="../icons/logo.png" alt="Logo" style="height: 40px;">
+    <h2 style="margin: 0; font-size: 1.2rem;">BTS eLMS</h2>
+  </div>
+  <div class="header-right">
+    <div class="profile-dropdown" id="profileDropdown">
+      <span class="login-text">Guest</span>
+      <img src="../icons/ProfileLogo.jpg" alt="Guest Icon" class="profile-icon">
+      <ul class="dropdown-menu">
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Help</a></li>
+        <li><a href="../HTML/homepage.html">Logout</a></li>
+      </ul>
+    </div>
+    <button class="hamburger" id="hamburger">&#9776;</button>
+  </div>
+</header>
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <nav>
+      <a href="#" data-tab="dashboard">Home</a>
+      <a href="#" data-tab="courses">Courses</a>
+      <a href="#" data-tab="about">About</a>
+      <a href="#" data-tab="contact">Contact</a>
     </nav>
-  </header>
+  </aside>
 
-  <main>
-    <section id="homeSection" class="section">
-      <h1>Welcome to ELMS</h1>
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content">
+
+    <!-- ===== HOME SECTION ===== -->
+    <section class="tab-content" id="dashboard">
+      <div class="home-toggle">
+        <button class="toggle-btn active" data-tab="dashboardView">Dashboard</button>
+        <button class="toggle-btn" data-tab="newsView">News</button>
+      </div>
+
+      <!-- Dashboard View -->
+      <div class="tab-content" id="dashboardView">
+        <p>Welcome to BTS eLMS! Here you can browse courses, read the latest news, and learn about our school.</p>
+      </div>
+
+      <!-- News View -->
+      <div class="tab-content" id="newsView" style="display: none; max-height: 300px; overflow-y: auto;">
+        <h3>Latest News</h3>
+        <ul>
+          <li>Enrollment for the new semester opens on September 10, 2025.</li>
+          <li>New course: Advanced Web Development now available.</li>
+          <li>School celebrates 25th anniversary this October.</li>
+          <li>Guest users can now view sample modules for free.</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ===== COURSES SECTION ===== -->
+    <section class="tab-content" id="courses" style="display: none;">
+      <h2>Available Courses</h2>
+      <div class="courses-tab" style="display: flex; flex-wrap: wrap;">
+        <div class="course-card">
+          <img src="../icons/Agriculture.jpg" alt="Agriculture">
+          <p>Agriculture</p>
+        </div>
+        <div class="course-card">
+          <img src="../icons/Automotive.jpg" alt="Automotive">
+          <p>Automotive</p>
+        </div>
+        <div class="course-card">
+          <img src="../icons/BreadAndPastry.jpg" alt="Bread & Pastry">
+          <p>Bread & Pastry</p>
+        </div>
+        <div class="course-card">
+          <img src="../icons/JapaneseLanguageAndCulture.jpg" alt="Japanese Language & Culture">
+          <p>Japanese Language & Culture</p>
+        </div>
+        <div class="course-card">
+          <img src="../icons/Dressmaking.jpg" alt="Dressmaking">
+          <p>Dressmaking</p>
+        </div>
+        <div class="course-card">
+          <img src="../icons/Driving.png" alt="Driving">
+          <p>Driving</p>
+        </div>
+        <div class="course-card">
+          <img src="../icons/Tailoring.jpg" alt="Tailoring">
+          <p>Tailoring</p>
+        </div>
+        <div class="course-card">
+          <img src="../icons/Hairdressing.jpg" alt="Hairdressing">
+          <p>Hairdressing</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT SECTION ===== -->
+    <section class="tab-content" id="about" style="display: none;">
+      <h2>About BTS eLMS</h2>
       <p>
-        Welcome guest! Please sign up to create an account and enroll in courses.
-      </p>
-      <p class="muted">
-        As a guest, you can browse public courses and learn about our offerings, but you cannot participate or access materials until you register.
+        BTS eLMS has been a leader in technical education for over 25 years. 
+        Our mission is to provide quality vocational and academic training to students, 
+        ensuring they are ready for industry challenges. <br><br>
+        (Placeholder text: history, achievements, mission, vision, and school highlights go here.)
       </p>
     </section>
 
-    <section id="coursesSection" class="section" style="display:none">
-      <h2>Public Course Listings</h2>
-      <ul class="course-list" id="publicCourseList"></ul>
-    </section>
-
-    <section id="signUpSection" class="section" style="display:none">
-      <h2>Create Your Account</h2>
-      <div id="notif"></div>
-      <form id="signUpForm" novalidate>
-        <label for="nameInput">Full Name</label>
-        <input type="text" id="nameInput" required placeholder="Your full name" />
-
-        <label for="emailInput">Email Address</label>
-        <input type="email" id="emailInput" required placeholder="you@example.com" />
-
-        <label for="contactInput">Contact Number</label>
-        <input type="tel" id="contactInput" placeholder="+63..." />
-
-        <label for="passwordInput">Password</label>
-        <input type="password" id="passwordInput" required placeholder="Choose a strong password" />
-
-        <label for="confirmPasswordInput">Confirm Password</label>
-        <input type="password" id="confirmPasswordInput" required placeholder="Retype your password" />
-
-        <button class="btn" type="submit">Sign Up</button>
-      </form>
-      <p class="muted" style="margin-top:12px; font-size:0.9rem;">
-        After signing up, your registration will be reviewed and approved by an administrator.
+    <!-- ===== CONTACT SECTION ===== -->
+    <section class="tab-content" id="contact" style="display: none;">
+      <h2>Contact Us</h2>
+      <p>
+        BTS Technical School <br>
+        123 Academic Avenue, Baguio City, Philippines <br>
+        Phone: (074) 123-4567 <br>
+        Email: info@btstech.edu.ph
       </p>
     </section>
   </main>
+    <script src="../Script/guest.js"></script>
+
+<!-- ===== PROFILE MODAL ===== -->
+<div id="profileModal" class="modal-overlay">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h3>Edit Profile</h3>
+    <form id="profileForm">
+      <div class="form-group">
+        <label>Name:</label>
+        <input type="text" name="name" placeholder="Enter your name">
+      </div>
+      <div class="form-group">
+        <label>Bio:</label>
+        <textarea name="bio" placeholder="Write a short bio"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Profile Picture:</label>
+        <input type="file" name="profilePic">
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn save">Save</button>
+        <button type="button" id="deleteAccountBtn" class="btn delete">Delete Account</button>
+      </div>
+    </form>
+  </div>
 </div>
-
-<script>
-  // Navigation controls
-  const sections = {
-    home: document.getElementById('homeSection'),
-    courses: document.getElementById('coursesSection'),
-    signUp: document.getElementById('signUpSection'),
-  };
-  function showSection(name) {
-    Object.values(sections).forEach(s => s.style.display = 'none');
-    if (sections[name]) sections[name].style.display = 'block';
-  }
-
-  document.getElementById('navHome').addEventListener('click', e => {
-    e.preventDefault();
-    showSection('home');
-  });
-  document.getElementById('navCourses').addEventListener('click', e => {
-    e.preventDefault();
-    showSection('courses');
-  });
-  document.getElementById('navSignUp').addEventListener('click', e => {
-    e.preventDefault();
-    showSection('signUp');
-  });
-
-  // Public courses mock data
-  const publicCourses = [
-    { title: 'Intro to Computer Basics', description: 'Learn the fundamentals of computers and operating systems.' },
-    { title: 'Basics of Office Software', description: 'Get started with word processing, spreadsheets, and presentations.' },
-    { title: 'Internet Safety 101', description: 'Understand online privacy and best security practices.' },
-  ];
-  const courseListEl = document.getElementById('publicCourseList');
-  publicCourses.forEach(c => {
-    const li = document.createElement('li');
-    li.className = 'course-item';
-    li.innerHTML = `<div class="course-title">${c.title}</div><div class="course-desc">${c.description}</div>`;
-    courseListEl.appendChild(li);
-  });
-
-  // Sign-up form handling (front-end only)
-  const signUpForm = document.getElementById('signUpForm');
-  const notif = document.getElementById('notif');
-  signUpForm.addEventListener('submit', e => {
-    e.preventDefault();
-    notif.style.display = 'none';
-
-    const name = document.getElementById('nameInput').value.trim();
-    const email = document.getElementById('emailInput').value.trim();
-    const password = document.getElementById('passwordInput').value;
-    const confirmPassword = document.getElementById('confirmPasswordInput').value;
-
-    if (!name || !email || !password || !confirmPassword) {
-      alert('Please fill all required fields.');
-      return;
-    }
-    if (password !== confirmPassword) {
-      alert('Passwords do not match.');
-      return;
-    }
-
-    // Simulate registration success
-    notif.textContent = `Thank you, ${name}! Your registration request has been submitted and is pending approval.`;
-    notif.style.display = 'block';
-    signUpForm.reset();
-  });
-
-  // Show home on load
-  showSection('home');
-</script>
-
 </body>
 </html>
