@@ -1,551 +1,185 @@
-/* ===== RESET ===== */
+/* ================= RESET ================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
-  font-family: system-ui, sans-serif;
-  background: #f7fafc;
-  color: #1f2937;
+  font-family: Arial, sans-serif;
+  background-color: #cce6ff;
+  color: #333;
+}
+
+/* ================= LAYOUT ================= */
+.container {
   display: flex;
   min-height: 100vh;
 }
 
-/* ===== HEADER ===== */
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  background: #1e3a8a;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1rem;
-  z-index: 1000;
-}
-.header .logo img {
-  height: 40px;
-}
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.profile-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-}
-.hamburger {
-  background: none;
-  border: none;
-  font-size: 24px;
-  color: white;
-  display: none;
-}
-
-/* ===== SIDEBAR ===== */
+/* ================= SIDEBAR ================= */
 .sidebar {
-  width: 220px;
-  background: #1e40af;
+  width: 200px;
+  background: #3399FF;
   color: white;
-  padding: 1rem;
-  flex-shrink: 0;
-  position: fixed;
-  top: 60px;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.3s ease;
-}
-.sidebar nav a {
-  display: block;
-  padding: 0.8rem;
-  margin: 0;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-}
-.sidebar nav a:hover {
-  background: #2563eb;
-}
-.sidebar .logout {
-  margin-top: auto;
-}
-.sidebar .logout a {
-  color: #fca5a5;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-/* ===== MAIN CONTENT ===== */
-.main-content {
-  margin-left: 220px;
-  padding: 80px 20px 60px;
-  flex: 1;
-}
-/* ===== PROFILE DROPDOWN ===== */
-.profile-dropdown {
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.profile-dropdown .dropdown-menu {
-  position: absolute;
-  top: 45px;
-  right: 0;
-  background: white;
-  color: #1f2937;
-  list-style: none;
-  padding: 0.5rem 0;
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-  display: none;
-  min-width: 120px;
-  z-index: 1001;
-}
-
-.profile-dropdown .dropdown-menu li {
-  padding: 0;
-}
-
-.profile-dropdown .dropdown-menu li a {
-  display: block;
-  padding: 0.5rem 1rem;
-  color: #1f2937;
-  text-decoration: none;
-}
-
-.profile-dropdown .dropdown-menu li a:hover {
-  background: #f3f4f6;
-}
-/* ===== HOME TOGGLE BUTTONS ===== */
-.home-toggle {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.toggle-btn {
-  padding: 0.5rem 1rem;
-  background: #1e40af;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.toggle-btn:hover {
-  background: #2563eb;
-}
-
-.toggle-btn.active {
-  background: #2563eb;
-}
-
-/* ===== TAB CONTENT ===== */
-.tab-content {
-  background: white;
-  padding: 1rem;
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-/* ===== NEWS POST BUTTON ===== */
-.news-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.post-btn {
-  padding: 0.3rem 0.8rem;
-  background: #10b981;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.post-btn:hover {
-  background: #059669;
-}
-
-/* ===== COURSES SECTION ===== */
-.courses-section {
-  margin-top: 30px;
-}
-
-.courses-toggle {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.courses-tab {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.course-card {
-  background: white;
-  padding: 1rem;
-  width: calc(25% - 15px); /* 4 cards per row */
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  text-align: center;
-  font-weight: bold;
-}
-.course-card {
-  background: white;
-  padding: 10px;
-  width: calc(25% - 15px); /* 4 per row */
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  text-align: center;
-  font-weight: bold;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.course-card img {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 6px;
-  margin-bottom: 8px;
-}
-/* ===== NOTIFICATION DROPDOWN ===== */
-.notif-dropdown {
-  position: relative;
-  cursor: pointer;
-  margin-left: 15px;
-}
-
-.notif-icon {
-  width: 28px;
-  height: 28px;
-}
-
-.notif-menu {
-  position: absolute;
-  top: 35px;
-  right: 0;
-  background: white;
-  color: #1f2937;
-  list-style: none;
-  padding: 0.5rem 0;
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-  display: none;
-  min-width: 180px;
-  z-index: 1001;
-}
-
-.notif-menu li {
-  padding: 0.5rem 1rem;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.notif-menu li:last-child {
-  border-bottom: none;
-}
-
-.notif-menu li:hover {
-  background: #f3f4f6;
-}
-/* ===== TABLES ===== */
-.table-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.create-btn {
-  padding: 0.4rem 0.8rem;
-  background: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-}
-.create-btn:hover {
-  background: #1e40af;
-}
-
-.styled-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-  background: white;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-.styled-table thead {
-  background: #1e3a8a;
-  color: white;
-}
-
-.styled-table th,
-.styled-table td {
-  padding: 12px 15px;
-  text-align: left;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.styled-table tbody tr:nth-child(even) {
-  background: #f9fafb;
-}
-
-.styled-table tbody tr:hover {
-  background: #f3f4f6;
-}
-
-/* Status Badges */
-.status {
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: bold;
-}
-.status.active {
-  background: #d1fae5;
-  color: #065f46;
-}
-.status.inactive {
-  background: #fee2e2;
-  color: #991b1b;
-}
-
-/* Action buttons */
-.edit-btn, .delete-btn {
-  padding: 0.3rem 0.6rem;
-  font-size: 12px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-.edit-btn {
-  background: #3b82f6;
-  color: white;
-  margin-right: 5px;
-}
-.edit-btn:hover {
-  background: #1e40af;
-}
-.delete-btn {
-  background: #ef4444;
-  color: white;
-}
-.delete-btn:hover {
-  background: #991b1b;
-}
-/* Sidebar link styling */
-.sidebar a {
-  display: block;
-  padding: 10px;
-  color: #333;
-  text-decoration: none;
-  transition: background 0.3s;
-}
-
-.sidebar a:hover {
-  background: #f0f0f0;
-}
-
-/* Courses submenu (hidden by default) */
-.courses-menu {
-  position: relative;
-}
-
-.courses-submenu {
-  display: none;
-  position: absolute;
-  left: 100%; /* appear to the right of Courses */
-  top: 0;
-  background: #fff;
-  border: 1px solid #ddd;
-  min-width: 200px;
-  z-index: 100;
-}
-
-.courses-submenu a {
-  padding: 8px 12px;
-  display: block;
-  color: #444;
-}
-
-.courses-submenu a:hover {
-  background: #e5e7eb;
-}
-
-/* Show submenu on hover */
-.courses-menu:hover .courses-submenu {
-  display: block;
-}
-
-/* ===== COURSES HOVER MENU ===== */
-.courses-menu {
-  position: relative;
-}
-
-.courses-submenu {
-  display: none;
-  position: absolute;
-  left: 100%; /* open to the right */
-  top: 0;
-  background: #1e40af; /* match sidebar style */
-  min-width: 200px;
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-  z-index: 1001;
-}
-
-.courses-submenu a {
-  display: block;
-  padding: 10px;
-  color: white;
-  text-decoration: none;
-}
-
-.courses-submenu a:hover {
-  background: #2563eb;
-}
-
-/* Show submenu on hover */
-.courses-menu:hover .courses-submenu {
-  display: block;
-}
-/* Enrollment Table */
-.enrollment-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.enrollment-table th, .enrollment-table td {
-  padding: 12px 15px;
-  text-align: left;
-}
-
-.enrollment-table th {
-  background: #1e3a8a;
-  color: #fff;
-  font-weight: 600;
-}
-
-.enrollment-table tr:nth-child(even) {
-  background: #f9fafb;
-}
-
-.enrollment-table tr:hover {
-  background: #eef2ff;
-}
-
-.btn {
-  padding: 6px 12px;
-  margin: 0 4px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: 0.3s ease;
-}
-
-.btn.accept {
-  background: #16a34a;
-  color: white;
-}
-
-.btn.accept:hover {
-  background: #15803d;
-}
-
-.btn.decline {
-  background: #dc2626;
-  color: white;
-}
-
-.btn.decline:hover {
-  background: #b91c1c;
-}
-.batches-section {
   padding: 20px;
-  background: #f1f5f9;
-  border-radius: 8px;
-  margin-top: 20px;
 }
 
-.batches-header {
+.sidebar h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.sidebar ul li a:hover {
+  text-decoration: underline;
+}
+
+/* ================= MAIN CONTENT ================= */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  background: #f4f8ff;
+}
+
+.tab-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
 }
 
-.create-batch-btn {
-  padding: 6px 12px;
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+.tab-header h2 {
+  color: #004080;
 }
 
-.batches-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.batch-card {
+/* ================= TABLES ================= */
+.table-container {
+  overflow-x: auto;
   background: white;
-  padding: 15px 20px;
+  padding: 15px;
   border-radius: 8px;
-  box-shadow: 0px 3px 6px rgba(0,0,0,0.1);
-  cursor: pointer;
-  transition: transform 0.2s;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
 }
 
-.batch-card:hover {
-  transform: translateY(-3px);
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .sidebar {
-    transform: translateX(-100%);
-  }
-  .sidebar.active {
-    transform: translateX(0);
-  }
-  .main-content {
-    margin-left: 0;
-  }
-  .hamburger {
-    display: block;
-  }
-  .bottom-nav {
-    display: flex;
-  }
+
+thead {
+  background: #004080;
+  color: white;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+/* ================= BUTTONS ================= */
+button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Primary Action (Blue) */
+.create-btn {
+  background: #004080;
+  color: white;
+}
+
+.create-btn:hover {
+  background: #0066cc;
+}
+
+/* Secondary Action (Red) */
+.archive-btn {
+  background: #cc0000;
+  color: white;
+}
+
+.archive-btn:hover {
+  background: #ff3333;
+}
+
+/* Edit Action (Orange) */
+.edit-btn {
+  background: #ff9800;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #e68900;
+}
+
+/* ================= SWITCH TOGGLE ================= */
+.switch-oval {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 220px;
+  height: 40px;
+  margin-bottom: 20px;
+  padding: 5px;
+  background: #e0eaff;
+  border-radius: 50px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.switch-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: #004080;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.switch-inner.right {
+  left: 50%;
+}
+
+.switch-btn {
+  flex: 1;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #004080;
+  background: transparent;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.switch-btn.active {
+  color: white;
 }

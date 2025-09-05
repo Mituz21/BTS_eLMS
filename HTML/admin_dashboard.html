@@ -1,336 +1,347 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
+<!-- saved from url=(0034)file:///C:/Users/Arlen/index.html# -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard - eLMS</title>
+  <title>eLMS Dashboard</title>
   <link rel="stylesheet" href="../CSS/admin.css">
 </head>
 <body>
-
-  <!-- ===== HEADER ===== -->
-  <header class="header">
-    <div class="logo">
-      <img src="../icons/logo.png" alt="Logo"> <!-- Replace with your logo -->
-    </div>
-    <div class="header-right">
-      <div class="profile-dropdown" id="profileDropdown">
-        <span class="login-text">Admin</span>
-        <img src="../icons/ProfileLogo.jpg" alt="Profile" class="profile-icon">
-        <ul class="dropdown-menu">
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">Help</a></li>
-          <li><a href="../HTML/homepage.html">Logout</a></li>
-        </ul>
+  <div class="container">
+    
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+      <div class="profile">
+        <div class="avatar"></div>
+        <h2>BTS eLMS</h2>
       </div>
-        <!-- Notification Dropdown -->
-    <div class="notif-dropdown" id="notifDropdown">
-      <img src="../icons/notiflogo.png" alt="Notifications" class="notif-icon">
-     <ul class="notif-menu">
-      <li>No new notifications</li>
-      <!-- Example notifications -->
-      <!-- <li>New user registered</li>
-      <li>Course updated</li> -->
-      </ul>
-    </div>
-      <button class="hamburger" id="hamburger">&#9776;</button>
-    </div>
-  </header>
+      <nav class="nav">
+        <a href="file:///C:/Users/Arlen/index.html#" class="tab-link" data-tab="home">Home</a>
+        <a href="file:///C:/Users/Arlen/index.html#" class="tab-link" data-tab="trainers">Trainers</a>
+        <a href="file:///C:/Users/Arlen/index.html#" class="tab-link" data-tab="trainees">Trainees</a>
+        <a href="file:///C:/Users/Arlen/index.html#" class="tab-link" data-tab="guests">Guests</a>
+        <a href="file:///C:/Users/Arlen/index.html#" class="tab-link active" data-tab="courses">Courses</a>
+        <a href="file:///C:/Users/Arlen/index.html#">Enrollments</a>
+      </nav>
+    </aside>
 
-  <!-- ===== SIDEBAR ===== -->
-<aside class="sidebar" id="sidebar">
-  <nav>
-    <a href="#" data-tab="dashboard">Home</a>
-    <a href="#" data-tab="trainer">Trainer</a>
-    <a href="#" data-tab="trainee">Trainee</a>
+    <!-- ===== MAIN ===== -->
+    <main class="main">
 
-    <!-- Courses Toggle -->
-   <div class="courses-menu">
-  <a href="#" class="courses-toggle">Courses ▸</a>
-  <div class="courses-submenu">
-    <a href="#">Agriculture</a>
-    <a href="#">Automotive</a>
-    <a href="#">Bread & Pastry</a>
-    <a href="#">Japanese Language & Culture</a>
-    <a href="#">Dressmaking</a>
-    <a href="#">Driving</a>
-    <a href="#">Tailoring</a>
-    <a href="#">Hairdressing</a>
+      <!-- ===== TOP BAR ===== -->
+      <header class="topbar">
+        <div class="user-info">
+          <span class="username">Admin User</span>
+          <div class="user-avatar"></div>
+          <i class="fas fa-bell notif-icon"></i>
+        </div>
+      </header>
+
+      <!-- ===== CONTENT AREA ===== -->
+      <div class="content">
+
+        <!-- ===== HOME TAB ===== -->
+        <section class="main-content tab-content active" id="home">
+
+         <!-- Switch Dashboard/News with Post button -->
+<div class="news-switch-wrapper">
+  <div class="switch-oval">
+    <div class="switch-inner" id="switchInner"></div>
+    <button class="switch-btn active" data-tab="dashboard">Dashboard</button>
+    <button class="switch-btn" data-tab="news">News</button>
+  </div>
+  <div class="post-container">
+    <button id="newsPostBtn" class="post-btn">+ Post</button>
   </div>
 </div>
 
-
-    <a href="#" data-tab="guest">Guest</a>
-    <a href="#" data-tab="request">Enrollment</a>
-  </nav>
-</aside>
-
-  <!-- ===== MAIN CONTENT ===== -->
-<main class="main-content">
-
-  <!-- ===== HOME SECTION (Dashboard + News + Courses) ===== -->
-  <section class="tab-content" id="dashboard">
-    <!-- Toggle Section: Dashboard / News -->
-    <div class="home-toggle">
-      <button class="toggle-btn active" data-tab="dashboardView">Dashboard</button>
-      <button class="toggle-btn" data-tab="news">News</button>
+<!-- New Post Section (hidden by default) -->
+<div id="newPostSection" class="new-post-section" style="display: none;">
+  <textarea id="postCaption" placeholder="Write your caption..."></textarea>
+  <div class="post-actions">
+    <input type="file" id="postImage" style="display:none">
+    <button id="uploadBtn" class="upload-btn">Upload Photo</button>
+    <div class="post-right-buttons">
+      <button id="cancelPostBtn" class="cancel-btn">Cancel</button>
+      <button id="submitPostBtn" class="submit-btn">Post</button>
     </div>
-
-    <!-- Dashboard View -->
-    <div class="tab-content" id="dashboardView">
-      <p>This is your dashboard view.</p>
-    </div>
-
-    <!-- News View -->
-    <div class="tab-content" id="news" style="display: none;">
-      <div class="news-header">
-        <h2>News</h2>
-        <button class="post-btn">+ Post</button>
-      </div>
-      <p>News posts will appear here...</p>
-    </div>
-
-    <!-- Courses Section -->
-    <section class="courses-section">
-      <h2>Courses</h2>
-
-      <!-- Toggle Available / Archived -->
-      <div class="courses-toggle">
-        <button class="toggle-btn active" data-course-tab="available">Available</button>
-        <button class="toggle-btn" data-course-tab="archived">Archived</button>
-      </div>
-
-      <!-- Available Courses -->
-      <div class="courses-tab" id="available">
-        <div class="course-card">
-          <img src="../icons/Agriculture.jpg" alt="Course 1">
-          <p>Course 1</p>
-        </div>
-        <div class="course-card">
-          <img src="../icons/Automotive.jpg" alt="Course 2">
-          <p>Course 2</p>
-        </div>
-        <div class="course-card">
-          <img src="../icons/BreadAndPastry.jpg" alt="Course 3">
-          <p>Course 3</p>
-        </div>
-        <div class="course-card">
-          <img src="../icons/JapaneseLanguageAndCulture.jpg" alt="Course 4">
-          <p>Course 4</p>
-        </div>
-        <div class="course-card">
-          <img src="../icons/Dressmaking.jpg" alt="Course 5">
-          <p>Course 5</p>
-        </div>
-        <div class="course-card">
-          <img src="../icons/Driving.png" alt="Course 6">
-          <p>Course 6</p>
-        </div>
-        <div class="course-card">
-          <img src="../icons/Tailoring.jpg" alt="Course 7">
-          <p>Course 7</p>
-        </div>
-        <div class="course-card">
-          <img src="../icons/Hairdressing.jpg" alt="Course 8">
-          <p>Course 8</p>
-        </div>
-      </div>
-
-      <!-- Archived Courses -->
-      <div class="courses-tab" id="archived" style="display: none;">
-        <p>No archived courses yet.</p>
-      </div>
-    </section>
-  </section>
-  <section class="tab-content" id="batchesSection" style="display:none;">
-  <div class="batches-header">
-    <h2 id="selectedCourse">Course Name</h2>
-    <button class="create-batch-btn">+ Create Batch</button>
   </div>
-  <div class="batches-list"></div>
-</section>
-
-<!-- ===== TRAINER SECTION ===== -->
-<section class="tab-content" id="trainer" style="display: none;">
-  <div class="table-header">
-    <h2>Trainers</h2>
-    <button class="create-btn">+ Create Trainer</button>
-  </div>
-
-  <table class="styled-table">
-    <thead>
-      <tr>
-        <th>User ID</th>
-        <th>Username</th>
-        <th>Password (Hashed)</th>
-        <th>Role</th>
-        <th>Status</th>
-        <th>Date Created</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>101</td>
-        <td>John Doe</td>
-        <td>$2y$10$N9qo8uLOickgx2ZMRZo5e.</td>
-        <td>Trainer</td>
-        <td><span class="status active">Active</span></td>
-        <td>2025-08-01</td>
-        <td>
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn">Delete</button>
-        </td>
-      </tr>
-      <tr>
-        <td>102</td>
-        <td>Jane Smith</td>
-        <td>$2y$10$7sTjA3MvqA12sKj5zLq7u.</td>
-        <td>Trainer</td>
-        <td><span class="status inactive">Inactive</span></td>
-        <td>2025-07-25</td>
-        <td>
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-
-<!-- ===== TRAINEE SECTION ===== -->
-<section class="tab-content" id="trainee" style="display: none;">
-  <div class="table-header">
-    <h2>Trainees</h2>
-    <button class="create-btn">+ Create Trainee</button>
-  </div>
-
-  <table class="styled-table">
-    <thead>
-      <tr>
-        <th>User ID</th>
-        <th>Username</th>
-        <th>Password (Hashed)</th>
-        <th>Role</th>
-        <th>Status</th>
-        <th>Date Created</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>201</td>
-        <td>Alice Brown</td>
-        <td>$2y$10$Jd9f2uLK8ghR0ZpQ7aB5v.</td>
-        <td>Trainee</td>
-        <td><span class="status active">Active</span></td>
-        <td>2025-07-15</td>
-        <td>
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn">Delete</button>
-        </td>
-      </tr>
-      <tr>
-        <td>202</td>
-        <td>Bob Green</td>
-        <td>$2y$10$4kLp3vDJ9mzF0QsA8nC7e.</td>
-        <td>Trainee</td>
-        <td><span class="status inactive">Inactive</span></td>
-        <td>2025-07-20</td>
-        <td>
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-
-<!-- ===== GUEST SECTION ===== -->
-<section class="tab-content" id="guest" style="display: none;">
-  <div class="table-header">
-    <h2>Guests</h2>
-  </div>
-
-  <table class="styled-table">
-    <thead>
-      <tr>
-        <th>User ID</th>
-        <th>Username</th>
-        <th>Password (Hashed)</th>
-        <th>Role</th>
-        <th>Status</th>
-        <th>Date Created</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>301</td>
-        <td>Visitor1</td>
-        <td>$2y$10$HkR7pOJl2nF1QsK3aV9u.</td>
-        <td>Guest</td>
-        <td><span class="status active">Active</span></td>
-        <td>2025-06-20</td>
-        <td>
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn">Delete</button>
-        </td>
-      </tr>
-      <tr>
-        <td>302</td>
-        <td>Visitor2</td>
-        <td>$2y$10$AbC3vKLo9qN1pXrR6eT2z.</td>
-        <td>Guest</td>
-        <td><span class="status inactive">Inactive</span></td>
-        <td>2025-06-25</td>
-        <td>
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-<!-- ===== ENROLLMENT REQUESTS SECTION ===== -->
-<section class="tab-content" id="request" style="display: none;">
- <div class="table-header">
- <h2>Enrollment Requests</h2>
 </div>
- 
- <table class="styled-table">
-    <thead>
-      <tr>
-        <th>User ID</th>
-        <th>Email</th>
-        <th>Course Requested</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>101</td>
-        <td>john.doe@student.edu</td>
-        <td>Database Management</td>
-        <td>
-          <button class="btn accept">Accept</button>
-          <button class="btn decline">Decline</button>
-        </td>
-      </tr>
-      <tr>
-        <td>102</td>
-        <td>jane.smith@student.edu</td>
-        <td>Web Development</td>
-        <td>
-          <button class="btn accept">Accept</button>
-          <button class="btn decline">Decline</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+
+          <!-- Dashboard Content -->
+          <div class="dashboard tab-inner active" id="dashboard">
+
+            <!-- Slogan Box -->
+            <div class="slogan-box">
+              <div class="slogan-text">
+                <h2>Welcome Back, Admin!</h2>
+                <p>Manage your users, courses, and announcements all in one place.</p>
+                <div class="slogan-footer">BTS eLMS Dashboard</div>
+              </div>
+              <div class="slogan-icon">
+                <i class="fas fa-graduation-cap fa-3x" style="color:#004080;"></i>
+              </div>
+            </div>
+
+            <!-- Dashboard Header -->
+            <h2 class="dashboard-header">User Management</h2>
+
+            <!-- Dashboard Cards -->
+            <div class="dashboard-cards">
+            <div class="dashboard-cards">
+                <div class="dashboard-card" data-target="trainers">
+                    <div class="number-circle">12</div>
+                    <div class="label-text">Total Trainers</div>
+                </div>
+                <div class="dashboard-card" data-target="trainees">
+                    <div class="number-circle">30</div>
+                    <div class="label-text">Total Trainees</div>
+                </div>
+                <div class="dashboard-card" data-target="guests">
+                    <div class="number-circle">45</div>
+                    <div class="label-text">Guests</div>
+                </div>
+                <div class="dashboard-card" data-target="courses">
+                    <div class="number-circle">8</div>
+                    <div class="label-text">Courses Offered</div>
+                </div>
+                <div class="dashboard-card" data-target="courses">
+                    <div class="number-circle">5</div>
+                    <div class="label-text">Enrollment Requests</div>
+                </div>
+            </div>
+
+          <!-- News Content -->
+          <div class="news tab-inner" id="news">
+            <div class="news-header">
+              <h2>Latest News</h2>
+            </div>
+            <ul class="news-list">
+              <li>No news yet. Stay tuned!</li>
+            </ul>
+          </div>
+        </div></div></section>
+
+        <!-- ===== TRAINERS TAB ===== -->
+        <section class="main-content tab-content" id="trainers">
+          <div class="tab-header">
+            <h2>Trainer Management</h2>
+            <div class="tab-actions">
+              <button class="create-btn">+ Create Acc</button>
+              <button id="multiArchiveBtn" class="archive-btn">Multi-Archive</button>
+            </div>
+          </div>
+
+          <!-- Switch Active/Archived -->
+          <div class="switch-oval" style="width: 160px; margin-bottom: 15px;">
+            <div class="switch-inner" id="trainerSwitchInner"></div>
+            <button class="switch-btn active" data-tab="activeTrainers">Active</button>
+            <button class="switch-btn" data-tab="archivedTrainers">Archived</button>
+          </div>
+
+          <!-- Trainer Table -->
+          <div class="table-container">
+            <table class="trainer-table">
+              <thead>
+                <tr>
+                  <th><input type="checkbox" id="selectAllTrainers"></th>
+                  <th>Username</th>
+                  <th>Password (Hashed)</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Date Created</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-status="active">
+                  <td><input type="checkbox" class="trainer-checkbox"></td>
+                  <td>trainer01</td>
+                  <td>$2b$12$123hashedpwd</td>
+                  <td>Trainer</td>
+                  <td>Active</td>
+                  <td>2025-09-04</td>
+                  <td>
+                    <button class="edit-btn">Edit</button>
+                    <button class="archive-btn single-archive-btn">Archive</button>
+                  </td>
+                </tr>
+                <tr data-status="inactive">
+                  <td><input type="checkbox" class="trainer-checkbox"></td>
+                  <td>trainer02</td>
+                  <td>$2b$12$456hashedpwd</td>
+                  <td>Trainer</td>
+                  <td>Inactive</td>
+                  <td>2025-08-20</td>
+                  <td>
+                    <button class="edit-btn">Edit</button>
+                    <button class="archive-btn single-archive-btn">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+       <!-- ===== TRAINEES TAB ===== -->
+<section class="main-content tab-content" id="trainees">
+  <div class="tab-header">
+    <h2>Trainee Management</h2>
+    <div class="tab-actions">
+      <!-- Toggle Switch -->
+      <div class="switch-buttons">
+        <button class="switch-btn active" data-tab="trainees-active">Active</button>
+        <button class="switch-btn" data-tab="trainees-archived">Archived</button>
+      </div>
+
+      <!-- Action Buttons -->
+      <button class="create-btn" id="createTraineeBtn">+ Create Acc</button>
+      <button class="archive-btn" id="multiTraineeBtn">Multi-Archive</button>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="trainee-table">
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="selectAllTrainees"></th>
+          <th>Name</th>
+          <th>Trainee ID</th>
+          <th>Password (Hashed)</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Date Created</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="checkbox" class="select-row"></td>
+          <td>Juan Dela Cruz</td>
+          <td>TR001</td>
+          <td>$2b$12$hashedpassword</td>
+          <td>Trainee</td>
+          <td>Active</td>
+          <td>2025-09-04</td>
+          <td>
+            <button class="edit-btn">Edit</button>
+            <button class="archive-btn">Archive</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
-</main>
+
+        <!-- ===== GUESTS TAB ===== -->
+        <section class="main-content tab-content" id="guests">
+          <div class="tab-header">
+            <h2>Guest Management</h2>
+            <div class="tab-actions">
+              <button class="create-btn">+ Create Acc</button>
+              <button class="archive-btn">Archive Selected</button>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="guest-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Password (Hashed)</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Date Created</th>
+                  <th>Last Login</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>guest01</td>
+                  <td>$2b$12$examplehashedpwd</td>
+                  <td>Guest</td>
+                  <td>Active</td>
+                  <td>2025-09-04</td>
+                  <td>2025-09-04 12:30</td>
+                  <td>
+                    <button class="edit-btn">Edit</button>
+                    <button class="archive-btn">Archive</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>guest02</td>
+                  <td>$2b$12$examplehashedpwd</td>
+                  <td>Guest</td>
+                  <td>Inactive</td>
+                  <td>2025-08-28</td>
+                  <td>2025-09-01 09:15</td>
+                  <td>
+                    <button class="edit-btn">Edit</button>
+                    <button class="archive-btn">Archive</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ===== COURSES TAB ===== -->
+        <section class="main-content tab-content" id="courses">
+          <div class="tab-header">
+            <h2>Course Management</h2>
+            <div class="tab-actions">
+              <button id="courseActionBtn" class="create-btn">+ Add Course</button>
+            </div>
+          </div>
+
+          <!-- Switch Offered/Archived -->
+          <div class="switch-oval" style="margin-bottom: 20px;">
+            <div class="switch-inner" id="courseSwitchInner"></div>
+            <button class="switch-btn active" data-tab="offeredCourses">Offered</button>
+            <button class="switch-btn" data-tab="archivedCourses">Archived</button>
+          </div>
+
+          <!-- Offered Courses -->
+          <div class="tab-inner active" id="offeredCourses">
+            <div class="dashboard-cards">
+              <div class="dashboard-card">
+                <img src="https://via.placeholder.com/100x60?text=Course" alt="Course Image" class="course-img">
+                <div class="label-text">Introduction to Web Development</div>
+                <div class="sub-text">WD101 | 40 hours</div>
+              </div>
+              <div class="dashboard-card">
+                <img src="https://via.placeholder.com/100x60?text=Course" alt="Course Image" class="course-img">
+                <div class="label-text">Database Management Systems</div>
+                <div class="sub-text">DB201 | 60 hours</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Archived Courses -->
+          <div class="tab-inner" id="archivedCourses">
+            <div class="dashboard-cards">
+              <div class="dashboard-card">
+                <img src="https://via.placeholder.com/100x60?text=Course" alt="Course Image" class="course-img">
+                <div class="label-text">Old Programming Basics</div>
+                <div class="sub-text">PRG001 | 30 hours</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== ANNOUNCEMENTS ===== -->
+        <aside class="announcements">
+          <h2>Announcements</h2>
+          <ul>
+            <li>No announcements yet. Stay tuned!</li>
+          </ul>
+        </aside>
+      </div>
+    </main>
+  </div>
+
   <script src="../Script/admin.js"></script>
 </body>
 </html>
