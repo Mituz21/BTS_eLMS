@@ -12,16 +12,16 @@
     <!-- ===== SIDEBAR ===== -->
     <aside class="sidebar">
       <div class="profile">
-        <div class="avatar"></div>
+        <img src="../icons/logo.png" alt="BTS eLMS Logo" class="avatar">
         <h2>BTS eLMS</h2>
       </div>
       <nav class="nav">
-        <a href="file:///C:/Users/Arlen/index.html#" class="tab-link" data-tab="home">Home</a>
-        <a href="file:///C:/Users/Arlen/index.html#" class="tab-link" data-tab="trainers">Trainers</a>
-        <a href="file:///C:/Users/Arlen/index.html#" class="tab-link" data-tab="trainees">Trainees</a>
-        <a href="file:///C:/Users/Arlen/index.html#" class="tab-link" data-tab="guests">Guests</a>
-        <a href="file:///C:/Users/Arlen/index.html#" class="tab-link active" data-tab="courses">Courses</a>
-        <a href="file:///C:/Users/Arlen/index.html#">Enrollments</a>
+        <a href="#" class="tab-link" data-tab="home">Home</a>
+        <a href="#" class="tab-link" data-tab="trainers">Trainers</a>
+        <a href="#" class="tab-link" data-tab="trainees">Trainees</a>
+        <a href="#" class="tab-link" data-tab="guests">Guests</a>
+        <a href="#" class="tab-link active" data-tab="courses">Courses</a>
+        <a href="#">Enrollments</a>
       </nav>
     </aside>
 
@@ -32,8 +32,8 @@
       <header class="topbar">
         <div class="user-info">
           <span class="username">Admin User</span>
-          <div class="user-avatar"></div>
-          <i class="fas fa-bell notif-icon"></i>
+          <img src="../icons/ProfileLogo.jpg" alt="User Avatar" class="user-avatar">
+          <img src="../icons/notiflogo.png" alt="Notifications" class="notif-icon">
         </div>
       </header>
 
@@ -128,7 +128,7 @@
             <h2>Trainer Management</h2>
             <div class="tab-actions">
               <button class="create-btn">+ Create Acc</button>
-              <button id="multiArchiveBtn" class="archive-btn">Multi-Archive</button>
+              <button id="multiArchiveBtn" class="archive-btn">Archive Multiple</button>
             </div>
           </div>
 
@@ -183,56 +183,46 @@
           </div>
         </section>
 
-       <!-- ===== TRAINEES TAB ===== -->
-<section class="main-content tab-content" id="trainees">
-  <div class="tab-header">
-    <h2>Trainee Management</h2>
-    <div class="tab-actions">
-      <!-- Toggle Switch -->
-      <div class="switch-buttons">
-        <button class="switch-btn active" data-tab="trainees-active">Active</button>
-        <button class="switch-btn" data-tab="trainees-archived">Archived</button>
-      </div>
+        <!-- ===== TRAINEES TAB ===== -->
+        <section class="main-content tab-content" id="trainees">
+          <div class="tab-header">
+            <h2>Trainee Management</h2>
+            <div class="tab-actions">
+              <button class="create-btn">+ Create Acc</button>
+              <button class="archive-btn">Archive Selected</button>
+            </div>
+          </div>
 
-      <!-- Action Buttons -->
-      <button class="create-btn" id="createTraineeBtn">+ Create Acc</button>
-      <button class="archive-btn" id="multiTraineeBtn">Multi-Archive</button>
-    </div>
-  </div>
-
-  <div class="table-container">
-    <table class="trainee-table">
-      <thead>
-        <tr>
-          <th><input type="checkbox" id="selectAllTrainees"></th>
-          <th>Name</th>
-          <th>Trainee ID</th>
-          <th>Password (Hashed)</th>
-          <th>Role</th>
-          <th>Status</th>
-          <th>Date Created</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="checkbox" class="select-row"></td>
-          <td>Juan Dela Cruz</td>
-          <td>TR001</td>
-          <td>$2b$12$hashedpassword</td>
-          <td>Trainee</td>
-          <td>Active</td>
-          <td>2025-09-04</td>
-          <td>
-            <button class="edit-btn">Edit</button>
-            <button class="archive-btn">Archive</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
+          <div class="table-container">
+            <table class="trainee-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Trainee ID</th>
+                  <th>Password (Hashed)</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Date Created</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Juan Dela Cruz</td>
+                  <td>TR001</td>
+                  <td>$2b$12$hashedpassword</td>
+                  <td>Trainee</td>
+                  <td>Active</td>
+                  <td>2025-09-04</td>
+                  <td>
+                    <button class="edit-btn">Edit</button>
+                    <button class="archive-btn">Archive</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
 
         <!-- ===== GUESTS TAB ===== -->
         <section class="main-content tab-content" id="guests">
@@ -343,5 +333,6 @@
   </div>
 
   <script src="../Script/admin.js"></script>
-</body>
-</html>
+
+
+</body></html>

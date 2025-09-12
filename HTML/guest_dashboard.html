@@ -3,156 +3,226 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guest Dashboard - eLMS</title>
-  <link rel="stylesheet" href="../CSS/admin.css"> <!-- Using the same admin CSS -->
+  <title>Benguet Technical School eLMS</title>
+  <link rel="stylesheet" href="../CSS/guest.css">
 </head>
 <body>
+  <div class="container">
+    
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+      <div class="profile">
+        <img src="../icons/logo.png" alt="BTS eLMS Logo" class="avatar">
+        <h2>BTS eLMS</h2>
+      </div>
+      <nav class="nav">
+        <a href="#" class="tab-link active" data-tab="home">Home</a>
+        <a href="#" class="tab-link" data-tab="courses">Offered Courses</a>
+        <a href="#" class="tab-link" data-tab="background">About Us</a>
+        <a href="#" class="tab-link" data-tab="announcements">Announcements</a>
+      </nav>
+    </aside>
 
-  <!-- ===== HEADER ===== -->
-  <header class="header">
-  <div class="logo" style="display: flex; align-items: center; gap: 10px;">
-    <img src="../icons/logo.png" alt="Logo" style="height: 40px;">
-    <h2 style="margin: 0; font-size: 1.2rem;">BTS eLMS</h2>
-  </div>
-  <div class="header-right">
-    <div class="profile-dropdown" id="profileDropdown">
-      <span class="login-text">Guest</span>
-      <img src="../icons/ProfileLogo.jpg" alt="Guest Icon" class="profile-icon">
-      <ul class="dropdown-menu">
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Help</a></li>
-        <li><a href="../HTML/homepage.html">Logout</a></li>
-      </ul>
+   <!-- ===== MAIN ===== -->
+<main class="main">
+
+  <header class="topbar">
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-    <button class="hamburger" id="hamburger">&#9776;</button>
+
+    <div class="user-info">
+      <span class="username" id="userMenuToggle">Guest User</span>
+      <img src="../icons/ProfileLogo.jpg" alt="User Avatar" class="user-avatar" id="userAvatar">
+      <!-- Dropdown Menu -->
+      <div class="user-dropdown hidden" id="userDropdown">
+        <a href="#">Profile</a>
+        <a href="#">FAQ</a>
+        <a href="#" id="deleteAccLink">Delete Acc</a>
+        <a href="../HTML/homepage.html">Logout</a>
+      </div>
+      <img src="../icons/notiflogo.png" alt="Notifications" class="notif-icon" id="notifIcon">
+
+<!-- Notification Dropdown -->
+<div class="notif-dropdown hidden" id="notifDropdown">
+  <h4>Recent Notifications</h4>
+  <ul>
+    <li>New activity posted in "Programming Basics"</li>
+    <li>Enrollment is now open for DB201</li>
+    <li>Your profile was updated successfully</li>
+  </ul>
+</div>
+
+    </div>
+  </header>
+
+      <!-- Overlay for sidebar -->
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+      <!-- ===== CONTENT AREA ===== -->
+      <div class="content">
+        
+        <!-- LEFT SIDE (All Tabs) -->
+        <div class="main-section">
+
+          <!-- ===== HOME TAB ===== -->
+          <section class="main-content tab-content active" id="home">
+            <div class="news-switch-wrapper">
+              <div class="switch-oval">
+                <div class="switch-inner" id="switchInner"></div>
+                <button class="switch-btn active" data-tab="dashboard">Dashboard</button>
+                <button class="switch-btn" data-tab="news">News</button>
+              </div>
+            </div>
+
+            <div class="dashboard tab-inner active" id="dashboard">
+              <div class="slogan-box">
+                <div class="slogan-text">
+                  <h2>Welcome Guest!</h2>
+                  <p>See opportunities for better future with BTS. If interested for enrollment requirements are the following: blablabla</p>
+                  <div class="slogan-footer">BTS eLMS Dashboard</div>
+                </div>
+                <div class="slogan-icon">
+                  <i class="fas fa-graduation-cap fa-3x" style="color:#004080;"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="news tab-inner" id="news">
+              <div class="news-header">
+                <h2>Latest News</h2>
+              </div>
+              <ul class="news-list">
+                <li>No news yet. Stay tuned!</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- ===== OFFERED COURSES TAB ===== -->
+          <section class="main-content tab-content" id="courses">
+            <div class="tab-header">
+              <h2>Offered Courses</h2>
+            </div>
+
+            <!-- Course Grid -->
+            <div id="courseGrid" class="dashboard-cards">
+              <div class="dashboard-card course-card" data-course="wd101">
+                <img src="../icons/Agriculture.jpg" alt="Course 1" class="course-img">
+                <div class="label-text">Agriculture</div>
+                <div class="sub-text">WD101 | 40 hours</div>
+              </div>
+              <div class="dashboard-card course-card" data-course="db201">
+                <img src="../icons/Automotive.jpg" alt="Course 2" class="course-img">
+                <div class="label-text">Automotive</div>
+                <div class="sub-text">DB201 | 60 hours</div>
+              </div>
+              <div class="dashboard-card course-card" data-course="prg101">
+                <img src="../icons/BreadAndPastry.jpg" alt="Course 3" class="course-img">
+                <div class="label-text">Bread and Pastry</div>
+                <div class="sub-text">PRG101 | 30 hours</div>
+              </div>
+              <!-- Add more dummy courses -->
+            </div>
+
+            <!-- Course Detail View -->
+            <div id="courseDetail" class="course-detail hidden">
+              <button id="backToCourses" class="primary-btn">← Back</button>
+              <h2 id="courseTitle">Course Title</h2>
+              <p id="courseCode"></p>
+
+              <div class="competencies">
+                <h3>Basic Competencies</h3>
+                <ul id="basicList"></ul>
+
+                <h3>Common Competencies</h3>
+                <ul id="commonList"></ul>
+
+                <h3>Core Competencies</h3>
+                <ul id="coreList"></ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===== SCHOOL BACKGROUND TAB ===== -->
+          <section class="main-content tab-content" id="background">
+            <h2>School Background</h2>
+            <p>Information about the school goes here...</p>
+          </section>
+
+          <!-- ===== ANNOUNCEMENTS TAB (now inside main content) ===== -->
+          <section class="main-content tab-content" id="announcements">
+            <h2>Announcements</h2>
+            <ul>
+              <li>No announcements yet. Stay tuned!</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </main>
   </div>
-</header>
-
-  <!-- ===== SIDEBAR ===== -->
-  <aside class="sidebar" id="sidebar">
-    <nav>
-      <a href="#" data-tab="dashboard">Home</a>
-      <a href="#" data-tab="courses">Courses</a>
-      <a href="#" data-tab="about">About</a>
-      <a href="#" data-tab="contact">Contact</a>
-    </nav>
-  </aside>
-
-  <!-- ===== MAIN CONTENT ===== -->
-  <main class="main-content">
-
-    <!-- ===== HOME SECTION ===== -->
-    <section class="tab-content" id="dashboard">
-      <div class="home-toggle">
-        <button class="toggle-btn active" data-tab="dashboardView">Dashboard</button>
-        <button class="toggle-btn" data-tab="newsView">News</button>
-      </div>
-
-      <!-- Dashboard View -->
-      <div class="tab-content" id="dashboardView">
-        <p>Welcome to BTS eLMS! Here you can browse courses, read the latest news, and learn about our school.</p>
-      </div>
-
-      <!-- News View -->
-      <div class="tab-content" id="newsView" style="display: none; max-height: 300px; overflow-y: auto;">
-        <h3>Latest News</h3>
-        <ul>
-          <li>Enrollment for the new semester opens on September 10, 2025.</li>
-          <li>New course: Advanced Web Development now available.</li>
-          <li>School celebrates 25th anniversary this October.</li>
-          <li>Guest users can now view sample modules for free.</li>
-        </ul>
-      </div>
-    </section>
-
-
-    <!-- ===== COURSES SECTION ===== -->
-    <section class="tab-content" id="courses" style="display: none;">
-      <h2>Available Courses</h2>
-      <div class="courses-tab" style="display: flex; flex-wrap: wrap;">
-        <div class="course-card">
-          <img src="../icons/Agriculture.jpg" alt="Agriculture">
-          <p>Agriculture</p>
-        </div>
-        <div class="course-card">
-          <img src="../icons/Automotive.jpg" alt="Automotive">
-          <p>Automotive</p>
-        </div>
-        <div class="course-card">
-          <img src="../icons/BreadAndPastry.jpg" alt="Bread & Pastry">
-          <p>Bread & Pastry</p>
-        </div>
-        <div class="course-card">
-          <img src="../icons/JapaneseLanguageAndCulture.jpg" alt="Japanese Language & Culture">
-          <p>Japanese Language & Culture</p>
-        </div>
-        <div class="course-card">
-          <img src="../icons/Dressmaking.jpg" alt="Dressmaking">
-          <p>Dressmaking</p>
-        </div>
-        <div class="course-card">
-          <img src="../icons/Driving.png" alt="Driving">
-          <p>Driving</p>
-        </div>
-        <div class="course-card">
-          <img src="../icons/Tailoring.jpg" alt="Tailoring">
-          <p>Tailoring</p>
-        </div>
-        <div class="course-card">
-          <img src="../icons/Hairdressing.jpg" alt="Hairdressing">
-          <p>Hairdressing</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== ABOUT SECTION ===== -->
-    <section class="tab-content" id="about" style="display: none;">
-      <h2>About BTS eLMS</h2>
-      <p>
-        BTS eLMS has been a leader in technical education for over 25 years. 
-        Our mission is to provide quality vocational and academic training to students, 
-        ensuring they are ready for industry challenges. <br><br>
-        (Placeholder text: history, achievements, mission, vision, and school highlights go here.)
-      </p>
-    </section>
-
-    <!-- ===== CONTACT SECTION ===== -->
-    <section class="tab-content" id="contact" style="display: none;">
-      <h2>Contact Us</h2>
-      <p>
-        BTS Technical School <br>
-        123 Academic Avenue, Baguio City, Philippines <br>
-        Phone: (074) 123-4567 <br>
-        Email: info@btstech.edu.ph
-      </p>
-    </section>
-  </main>
-    <script src="../Script/guest.js"></script>
-
 <!-- ===== PROFILE MODAL ===== -->
-<div id="profileModal" class="modal-overlay">
+<div class="modal hidden" id="profileModal">
   <div class="modal-content">
-    <span class="close-btn">&times;</span>
-    <h3>Edit Profile</h3>
-    <form id="profileForm">
-      <div class="form-group">
-        <label>Name:</label>
-        <input type="text" name="name" placeholder="Enter your name">
+    <span class="close-btn" id="closeProfileModal">&times;</span>
+    <h2>Edit Profile</h2>
+
+    <!-- Profile Picture Section -->
+    <div class="profile-wrapper">
+      <img id="profilePreview" src="../icons/ProfileLogo.jpg" alt="Profile">
+      <button type="button" id="changeProfileBtn" class="change-profile-btn">Upload Profile</button>
+      <input type="file" id="profileUpload" accept="image/*" style="display:none;">
+    </div>
+
+    <!-- Form Fields -->
+    <form class="modal-form">
+      <div>
+        <label>First Name</label>
+        <input type="text" placeholder="Enter First Name">
       </div>
-      <div class="form-group">
-        <label>Bio:</label>
-        <textarea name="bio" placeholder="Write a short bio"></textarea>
+      <div>
+        <label>Last Name</label>
+        <input type="text" placeholder="Enter Last Name">
       </div>
-      <div class="form-group">
-        <label>Profile Picture:</label>
-        <input type="file" name="profilePic">
+      <div>
+        <label>Email</label>
+        <input type="email" placeholder="Enter Email">
       </div>
-      <div class="form-actions">
-        <button type="submit" class="btn save">Save</button>
-        <button type="button" id="deleteAccountBtn" class="btn delete">Delete Account</button>
+      <div>
+        <label>Contact Number</label>
+        <input type="text" placeholder="Enter Contact Number">
+      </div>
+      <div class="full-width">
+        <label>Bio</label>
+        <textarea rows="3" placeholder="Write something about yourself..."></textarea>
       </div>
     </form>
+
+    <!-- Buttons -->
+    <div class="modal-buttons">
+      <button class="cancel-btn">Cancel</button>
+      <button class="primary-btn">Save Changes</button>
+    </div>
   </div>
 </div>
+
+<!-- ===== DELETE ACCOUNT MODAL ===== -->
+<div class="modal hidden" id="deleteAccountModal">
+  <div class="modal-content small-modal">
+    <span class="close-btn" id="closeDeleteModal">&times;</span>
+    <h2>⚠️ Delete Account</h2>
+    <p>Are you sure you want to permanently delete your account? <br>
+       This action cannot be undone.</p>
+
+    <div class="modal-buttons">
+      <button class="cancel-btn" id="cancelDeleteBtn">Cancel</button>
+      <button class="delete-btn" id="confirmDeleteBtn">Delete</button>
+    </div>
+  </div>
+</div>
+
+<script src="../Script/guest.js"></script>
+
 </body>
 </html>

@@ -130,7 +130,7 @@ body {
   background: white;
   color: black;
   border-radius: 5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   z-index: 100;
 }
 
@@ -166,7 +166,7 @@ body {
   background: white;
   padding: 15px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .main-content h2,
@@ -235,7 +235,7 @@ body {
   padding: 20px;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.05);
   text-align: center;
   transition: transform 0.2s;
 }
@@ -288,7 +288,7 @@ body {
   padding: 25px 30px;
   background: white;
   border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
 .slogan-box .slogan-text {
@@ -328,7 +328,7 @@ body {
   padding: 5px;
   background: #e0eaff;
   border-radius: 50px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
   overflow: hidden;
 }
 
@@ -370,7 +370,7 @@ body {
   background: white;
   border-radius: 12px;
   margin: 5px 0;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.05);
 }
 
 table {
@@ -378,7 +378,7 @@ table {
   border-collapse: collapse;
   background: white;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
 th,
@@ -459,7 +459,6 @@ tbody tr:hover {
   background: #287acc;
   transform: scale(1.05);
 }
-
 /* News +Post button */
 .news-post-btn {
   position: absolute;
@@ -474,11 +473,9 @@ tbody tr:hover {
   font-weight: bold;
   display: none; /* hidden by default */
 }
-
 .news-post-btn:hover {
   background-color: #2673cc;
 }
-
 .switch-oval {
   display: flex;
   align-items: center;
@@ -511,7 +508,6 @@ tbody tr:hover {
 .news-post-btn:hover {
   background-color: #2673cc;
 }
-
 .switch-oval-container {
   display: flex;
   align-items: center;
@@ -523,7 +519,7 @@ tbody tr:hover {
 .switch-oval {
   display: flex;
   position: relative;
-  width: 220px;
+  width: 220px; 
   height: 40px;
   padding: 5px;
   background: #e0eaff;
@@ -560,7 +556,6 @@ tbody tr:hover {
 .switch-btn.active {
   color: white;
 }
-
 .news-switch-wrapper {
   display: flex;
   align-items: center;
@@ -571,7 +566,7 @@ tbody tr:hover {
 .switch-oval {
   display: flex;
   position: relative;
-  width: 220px;
+  width: 220px; 
   height: 40px;
   padding: 5px;
   background: #e0eaff;
@@ -623,21 +618,19 @@ tbody tr:hover {
 .post-btn:hover {
   background-color: #2673cc;
 }
-
-.tab-header {
-  display: flex;
-  justify-content: space-between; /* pushes h2 left, button right */
-  align-items: center;
-  margin-bottom: 15px;
-}
-
+  .tab-header {
+    display: flex;
+    justify-content: space-between; /* pushes h2 left, button right */
+    align-items: center;
+    margin-bottom: 15px;
+  }
 .new-post-section {
   display: none; /* hidden initially */
   margin-top: 10px;
   padding: 15px;
   background: #f0f8ff;
   border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .new-post-section textarea {
@@ -697,17 +690,16 @@ tbody tr:hover {
 .submit-btn:hover {
   background-color: #2673cc;
 }
-
 /* ===== CREATE ACCOUNT MODAL ===== */
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 2000;
+  display: none; 
+  position: fixed; 
+  z-index: 2000; 
   left: 0;
   top: 0;
-  width: 100%;
+  width: 100%; 
   height: 100%;
-  overflow: auto;
+  overflow: auto; 
   background-color: rgba(0, 0, 0, 0.4); /* slightly darker overlay for depth */
   backdrop-filter: blur(2px);
 }
@@ -719,20 +711,14 @@ tbody tr:hover {
   border-radius: 16px;
   width: 420px;
   position: relative;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25); /* deeper shadow for floating effect */
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25); /* deeper shadow for floating effect */
   border-top: 6px solid #3399FF; /* accent colored top border for style */
   animation: fadeIn 0.3s ease;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from {opacity: 0; transform: translateY(-20px);}
+  to {opacity: 1; transform: translateY(0);}
 }
 
 .close-btn {
@@ -783,7 +769,7 @@ tbody tr:hover {
 .form-group textarea:focus {
   outline: none;
   border-color: #2673cc;
-  box-shadow: 0 0 6px rgba(51, 153, 255, 0.3);
+  box-shadow: 0 0 6px rgba(51,153,255,0.3);
 }
 
 .form-actions {
@@ -829,7 +815,6 @@ textarea {
   resize: none;
   font-family: Arial, sans-serif;
 }
-
 /* Form rows for multiple fields inline */
 .form-row {
   display: flex;
@@ -852,7 +837,6 @@ textarea {
 .modal-content {
   width: 480px; /* slightly wider to fit 4 fields in row */
 }
-
 /* Reduce the width of the suffix field */
 .form-row .form-group.suffix-group {
   flex: 0.5; /* smaller than other fields */
@@ -866,7 +850,6 @@ textarea {
 .upload-btn:hover {
   background-color: #2673cc;
 }
-
 /* Modal Background */
 .modal {
   display: none; /* hidden by default */
@@ -875,7 +858,7 @@ textarea {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0,0,0,0.5);
   z-index: 2000;
   justify-content: center;
   align-items: center;
@@ -889,7 +872,7 @@ textarea {
   width: 650px;
   max-width: 90%;
   position: relative;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 /* Close Button */
@@ -974,7 +957,6 @@ textarea {
 .submit-btn:hover {
   background: #2673cc;
 }
-
 /* Profile container */
 .profile-container {
   display: flex;
@@ -1001,33 +983,39 @@ textarea {
   color: #fff;
   border-radius: 8px;
 }
-
 /* Password column truncation */
 td.password-cell {
-  max-width: 120px; /* adjust width as needed */
-  white-space: nowrap; /* keep it in one line */
-  overflow: hidden; /* hide overflow */
+  max-width: 120px;       /* adjust width as needed */
+  white-space: nowrap;    /* keep it in one line */
+  overflow: hidden;       /* hide overflow */
   text-overflow: ellipsis; /* show ... for long text */
 }
 
 /* ================= RESPONSIVE ================= */
+
 @media (max-width: 600px) {
-  .dashboard-cards {
-    grid-template-columns: 1fr;
-  }
+  .dashboard-cards { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 500px) {
-  .switch-oval {
-    width: 160px;
-    height: 35px;
-  }
-
-  .switch-inner {
-    width: 50%;
-  }
+  .switch-oval { width: 160px; height: 35px; }
+  .switch-inner { width: 50%; }
 }
-
 .news-post-btn {
   display: inline-block; /* show the button */
+}
+.notif-icon {
+  width: 30px;     /* adjust as needed */
+  height: 30px;
+  cursor: pointer;
+  margin-left: 10px;
+  object-fit: contain; /* keeps aspect ratio */
+}
+.user-avatar {
+  width: 40px;         /* adjust size */
+  height: 40px;
+  border-radius: 50%;  /* makes it a circle */
+  object-fit: cover;   /* ensures it fills nicely */
+  margin-left: 5px;
+  cursor: pointer;
 }
