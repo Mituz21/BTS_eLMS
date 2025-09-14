@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Benguet Technical School eLMS</title>
-  <link rel="stylesheet" href="../CSS/trainee.css">
+  <link rel="stylesheet" href="../CSS/trainer.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -118,13 +118,6 @@
           <!-- MY COURSES TAB -->
           <section class="tab-content" id="mycourses">
             <div class="course-box">
-              <div class="news-switch-wrapper">
-                <div class="switch-oval">
-                  <div class="switch-inner" id="myCourseSwitchInner"></div>
-                  <button class="switch-btn active" data-tab="enrolled">Enrolled</button>
-                  <button class="switch-btn" data-tab="completed">Completed</button>
-                </div>
-              </div>
 
               <!-- Enrolled Courses -->
               <div id="enrolled" class="tab-inner active">
@@ -149,175 +142,173 @@
                 </div>
               </div>
 
-              <!-- Completed Courses -->
-              <div id="completed" class="tab-inner">
-                <h2 class="section-header">Completed Courses</h2>
-                <div class="course-list">
-                  <div class="course-card">
-                    <img src="https://via.placeholder.com/250x140" alt="Course Image">
-                    <div class="course-info">
-                      <h3>Web Development</h3>
-                      <p>Code: WD301</p>
-                      <p>Hours: 50 hrs</p>
+              <!-- Course Detail -->
+              <div id="course-detail" class="course-detail hidden">
+                <div class="detail-header">
+                  <h2 class="course-title">Course Name</h2>
+                  <button class="back-btn">← Back</button>
+                </div>
+
+                <div class="detail-body">
+                  <!-- Toggle Buttons: Modules / Activities -->
+                  <div class="toggle-wrapper">
+                    <button class="toggle-btn active" data-view="modules">Modules</button>
+                    <button class="toggle-btn" data-view="activities">Activities</button>
+                  </div>
+
+                  <!-- Modules View -->
+                  <div class="detail-view active" id="modules-view">
+
+                    <!-- Basic Competency -->
+                    <div class="competency">
+                      <h4>Basic Competency</h4>
+                      <div class="subtopic">
+                        <button class="subtopic-toggle">
+                          Introduction
+                          <i class="fa-solid fa-chevron-down arrow"></i>
+                        </button>
+                        <div class="subtopic-content">
+                          <p>📘 Handouts</p>
+                          <p>📝 Quiz</p>
+                          <p>🎯 Activity</p>
+                        </div>
+                      </div>
                     </div>
-                    <span class="completed-label">Completed</span>
+
+                    <!-- Common Competency -->
+                    <div class="competency">
+                      <h4>Common Competency</h4>
+                      <div class="subtopic">
+                        <button class="subtopic-toggle">
+                          Topic 1
+                          <i class="fa-solid fa-chevron-down arrow"></i>
+                        </button>
+                        <div class="subtopic-content">
+                          <p>📘 Handouts</p>
+                          <p>📝 Quiz</p>
+                          <p>🎯 Activity</p>
+                        </div>
+                      </div>
+                      <div class="subtopic">
+                        <button class="subtopic-toggle">
+                          Topic 2
+                          <i class="fa-solid fa-chevron-down arrow"></i>
+                        </button>
+                        <div class="subtopic-content">
+                          <p>📘 Handouts</p>
+                          <p>📝 Quiz</p>
+                          <p>🎯 Activity</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Core Competency -->
+                    <div class="competency">
+                      <h4>Core Competency</h4>
+                      <div class="subtopic">
+                        <button class="subtopic-toggle">
+                          Advanced Topic
+                          <i class="fa-solid fa-chevron-down arrow"></i>
+                        </button>
+                        <div class="subtopic-content">
+                          <p>📘 Handouts</p>
+                          <p>📝 Quiz</p>
+                          <p>🎯 Activity</p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <!-- Activities View -->
+                  <div class="detail-view" id="activities-view">
+                    <table class="activities-table">
+                      <thead>
+                        <tr>
+                          <th>Activity</th>
+                          <th>Student Name</th>
+                          <th>Start</th>
+                          <th>Due</th>
+                          <th>Submitted</th>
+                          <th>Graded</th>
+                          <th>Score</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- JS will populate rows here -->
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <!-- Activity Detail View -->
+                  <div id="activity-detail" class="activity-detail hidden">
+                    <div class="detail-header">
+                      <h3 class="activity-title">Activity Name</h3>
+                      <button class="back-btn activity-back">← Back</button>
+                    </div>
+                    <div class="detail-body">
+                      <!-- Switch Buttons -->
+                      <div class="toggle-wrapper">
+                        <button class="toggle-btn active" data-view="instructions">Instructions</button>
+                        <button class="toggle-btn" data-view="submissions">Submissions</button>
+                      </div>
+
+                      <!-- Instructions -->
+                      <div class="detail-view active" id="instructions-view">
+                        <p class="instructions-text">Activity instructions will appear here.</p>
+                      </div>
+
+                      <!-- Submissions Table -->
+                      <div class="detail-view" id="submissions-view">
+                        <table class="activities-table">
+                          <thead>
+                            <tr>
+                              <th>Student Name</th>
+                              <th>Submitted</th>
+                              <th>Graded</th>
+                              <th>Score</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <!-- JS will populate rows here -->
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-
-            <!-- Available Courses -->
-            <div class="course-box">
-              <h2 class="section-header">Available Courses</h2>
-              <div class="course-list">
-                <div class="course-card">
-                  <img src="https://via.placeholder.com/250x140" alt="Course Image">
-                  <div class="course-info">
-                    <h3>New Course</h3>
-                    <p>Code: MATH101</p>
-                    <p>Hours: 25 hrs</p>
-                  </div>
-                  <button class="enroll-btn">Enroll</button>
-                </div>
-                <div class="course-card">
-                  <img src="https://via.placeholder.com/250x140" alt="Course Image">
-                  <div class="course-info">
-                    <h3>Science Basics</h3>
-                    <p>Code: SCI102</p>
-                    <p>Hours: 35 hrs</p>
-                  </div>
-                  <button class="enroll-btn">Enroll</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Course Detail -->
-<div id="course-detail" class="course-detail hidden">
-  <div class="detail-header">
-    <h2 class="course-title">Course Name</h2>
-    <button class="back-btn">← Back</button>
-  </div>
-
-  <div class="detail-body">
-    <!-- Toggle Buttons: Modules / Activities -->
-    <div class="toggle-wrapper">
-      <button class="toggle-btn active" data-view="modules">Modules</button>
-      <button class="toggle-btn" data-view="activities">Activities</button>
-    </div>
-
-    <!-- Modules View -->
-    <div class="detail-view active" id="modules-view">
-
-      <!-- Basic Competency -->
-      <div class="competency">
-        <h4>Basic Competency</h4>
-        <div class="subtopic">
-          <button class="subtopic-toggle">
-            Introduction
-            <i class="fa-solid fa-chevron-down arrow"></i>
-          </button>
-          <div class="subtopic-content">
-            <p>📘 Handouts</p>
-            <p>📝 Quiz</p>
-            <p>🎯 Activity</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Common Competency -->
-      <div class="competency">
-        <h4>Common Competency</h4>
-        <div class="subtopic">
-          <button class="subtopic-toggle">
-            Topic 1
-            <i class="fa-solid fa-chevron-down arrow"></i>
-          </button>
-          <div class="subtopic-content">
-            <p>📘 Handouts</p>
-            <p>📝 Quiz</p>
-            <p>🎯 Activity</p>
-          </div>
-        </div>
-        <div class="subtopic">
-          <button class="subtopic-toggle">
-            Topic 2
-            <i class="fa-solid fa-chevron-down arrow"></i>
-          </button>
-          <div class="subtopic-content">
-            <p>📘 Handouts</p>
-            <p>📝 Quiz</p>
-            <p>🎯 Activity</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Core Competency -->
-      <div class="competency">
-        <h4>Core Competency</h4>
-        <div class="subtopic">
-          <button class="subtopic-toggle">
-            Advanced Topic
-            <i class="fa-solid fa-chevron-down arrow"></i>
-          </button>
-          <div class="subtopic-content">
-            <p>📘 Handouts</p>
-            <p>📝 Quiz</p>
-            <p>🎯 Activity</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Activities View -->
-    <div class="detail-view" id="activities-view">
-      <table class="activities-table">
-        <thead>
-          <tr>
-            <th>Activity</th>
-            <th>Start</th>
-            <th>Due</th>
-            <th>Submitted</th>
-            <th>Graded</th>
-            <th>Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- JS will populate rows here -->
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
           </section>
+
           <!-- ENROLLMENT REQUEST TAB -->
-<section class="tab-content" id="requests">
-  <h2 class="section-header">Enrollment Requests</h2>
-  <table class="requests-table">
-    <thead>
-      <tr>
-        <th>Course</th>
-        <th>Trainee Name</th>
-        <th>Status</th>
-        <th>Remarks</th>
-      </tr>
-    </thead>
-    <tbody id="requests-body">
-      <tr>
-        <td>IT101 - Programming Basics</td>
-        <td>John Doe</td>
-        <td>Pending</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>ENG201 - Communication Skills</td>
-        <td>Jane Smith</td>
-        <td>Approved</td>
-        <td>Verified by admin</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+          <section class="tab-content" id="requests">
+            <h2 class="section-header">Enrollment Requests</h2>
+            <table class="requests-table">
+              <thead>
+                <tr>
+                  <th>Course</th>
+                  <th>Trainee Name</th>
+                  <th>Status</th>
+                  <th>Remarks</th>
+                </tr>
+              </thead>
+              <tbody id="requests-body">
+                <tr>
+                  <td>IT101 - Programming Basics</td>
+                  <td>John Doe</td>
+                  <td>Pending</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>ENG201 - Communication Skills</td>
+                  <td>Jane Smith</td>
+                  <td>Approved</td>
+                  <td>Verified by admin</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
 
         </div>
 
@@ -333,25 +324,41 @@
     </main>
   </div>
 
-  <!-- MODALS -->
-  <div id="enrollModal" class="modal hidden">
-    <div class="modal-content">
-      <h3>⚠️ Confirmation</h3>
-      <p>Are you sure you want to enroll in this course?</p>
-      <div class="modal-actions">
-        <button id="confirmEnroll" class="confirm-btn">Yes, Enroll</button>
-        <button id="cancelEnroll" class="cancel-btn">Cancel</button>
-      </div>
-    </div>
-  </div>
-
+  <!-- ===== PROFILE MODAL ===== -->
   <div id="profileModal" class="modal hidden">
     <div class="modal-content">
       <span class="close-btn" id="closeProfileModal">&times;</span>
       <h2>Edit Profile</h2>
-      <!-- Profile form omitted for brevity -->
+
+      <!-- PROFILE HEADER -->
+      <div class="profile-header">
+        <div class="profile-left">
+          <img id="profilePreview" src="../icons/ProfileLogo.jpg" alt="Profile">
+          <button type="button" id="changeProfileBtn" class="change-profile-btn">Upload Photo</button>
+        </div>
+        <div class="profile-right">
+          <div class="full-name">Trainer User</div>
+          <div class="email">guest@example.com</div>
+        </div>
+      </div>
+
+      <!-- FORM BELOW HEADER -->
+      <form class="modal-form">
+        <label for="contactNumber">Contact Number</label>
+        <input type="text" id="contactNumber" name="contactNumber" placeholder="Enter contact number">
+
+        <label for="bio" class="full-width">Bio</label>
+        <textarea id="bio" name="bio" rows="3" class="full-width" placeholder="Write a short bio..."></textarea>
+      </form>
+
+      <!-- BUTTONS -->
+      <div class="modal-buttons">
+        <button type="button" class="cancel-btn">Cancel</button>
+        <button type="button" class="primary-btn">Save Changes</button>
+      </div>
     </div>
   </div>
-  <script src="../Script/trainee.js"></script>
+
+  <script src="../Script/trainer.js"></script>
 </body>
 </html>
