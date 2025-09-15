@@ -1265,7 +1265,7 @@ body {
 .activities-table th, .activities-table td,
 .activity-detail-table th, .activity-detail-table td {
   padding: 10px;
-  text-align: center;
+  text-align: left;
   border-bottom: 1px solid #ddd;
 }
 
@@ -1301,126 +1301,6 @@ body {
 .time-line {
   font-size: 0.8rem;
   color: #666;
-}
-
-  /* Activity Toggle Styles */
-  .activity-toggle-wrapper {
-    display: flex;
-    background-color: #f0f0f0;
-    border-radius: 30px;
-    padding: 4px;
-    margin-bottom: 20px;
-    position: relative;
-    width: fit-content;
-  }
-
-  .activity-toggle-btn {
-    padding: 8px 16px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    border-radius: 30px;
-    font-weight: 500;
-    z-index: 1;
-    transition: color 0.3s ease;
-    color: #666;
-  }
-
-  .activity-toggle-btn.active {
-    color: white;
-  }
-
-  .activity-toggle-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 4px;
-    left: 0;
-    height: calc(100% - 8px);
-    width: 50%;
-    background-color: #004080;
-    border-radius: 30px;
-    transition: transform 0.3s ease;
-  }
-
-  .activity-toggle-wrapper .activity-toggle-btn:nth-child(1).active ~ ::before {
-    transform: translateX(0%);
-  }
-
-  .activity-toggle-wrapper .activity-toggle-btn:nth-child(2).active ~ ::before {
-    transform: translateX(100%);
-  }
-
-  /* Activity Content Styles */
-  .activity-content {
-    display: none;
-    padding: 15px;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    margin-top: 10px;
-    border-left: 4px solid #004080;
-  }
-
-  .activity-content.active {
-    display: block;
-  }
-
-  .instructions-content h4 {
-    color: #004080;
-    margin-bottom: 10px;
-  }
-
-  .instructions-content p {
-    line-height: 1.6;
-    color: #333;
-  }
-  .activity-content-container {
-  position: relative;
-  overflow: hidden;
-  height: 300px; /* Set appropriate height */
-}
-
-.activity-content {
-  position: absolute;
-  width: 100%;
-  transition: transform 0.3s ease;
-  transform: translateX(100%);
-}
-
-.activity-content.active {
-  transform: translateX(0);
-}
-
-.activity-content.instructions {
-  transform: translateX(-100%);
-}
-
-.activity-content.instructions.active {
-  transform: translateX(0);
-}
-/* Add these styles to your CSS */
-.activity-content-container {
-  position: relative;
-  overflow: hidden;
-  height: 300px; /* Adjust based on your content height */
-}
-
-.activity-content {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.3s ease;
-}
-
-#instructions-content {
-  transform: translateX(-100%);
-}
-
-#submissions-content {
-  transform: translateX(100%);
-}
-
-.activity-content.active {
-  transform: translateX(0);
 }
 /* ================= RESPONSIVE ================= */
 

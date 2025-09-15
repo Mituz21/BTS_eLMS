@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+ document.addEventListener("DOMContentLoaded", () => {
   // ===== TAB SWITCHING =====
   const tabLinks = document.querySelectorAll(".tab-link");
   const tabContents = document.querySelectorAll(".tab-content");
@@ -70,80 +70,183 @@ document.addEventListener("DOMContentLoaded", () => {
     return `<div class="date-line">${datePart}</div><div class="time-line">${timePart}</div>`;
   }
 
-  // Sample activities data
+  // Sample activities data with student names and grading status
   const sampleActivities = [
-    { activity: "Quiz 1", name: "John Doe", start: "2025-09-01T09:00:00", due: "2025-09-07T23:59:00", submitted: "2025-09-05T14:30:00", gradedStatus: "graded", score: "95/100" },
-    { activity: "Assignment 1", name: "Jane Smith", start: "2025-09-03T10:00:00", due: "2025-09-10T23:59:00", submitted: "2025-09-11T10:30:00", gradedStatus: "late", score: "85/100" },
-    { activity: "Quiz 1", name: "Mike Johnson", start: "2025-09-01T09:00:00", due: "2025-09-07T23:59:00", submitted: "Not submitted", gradedStatus: "missed", score: "0/100" },
-    { activity: "Assignment 1", name: "Sarah Williams", start: "2025-09-03T10:00:00", due: "2025-09-10T23:59:00", submitted: "2025-09-08T15:45:00", gradedStatus: "pending", score: "-" }
+    { 
+      id: 1,
+      activity: "Quiz 1", 
+      name: "Introduction Quiz", 
+      description: "Test your knowledge on basic concepts",
+      students: [
+        { 
+          name: "John Doe", 
+          start: "2025-09-01T09:00:00", 
+          due: "2025-09-07T23:59:00", 
+          submitted: "2025-09-05T14:30:00", 
+          gradedStatus: "graded", 
+          score: "95/100" 
+        },
+        { 
+          name: "Mike Johnson", 
+          start: "2025-09-01T09:00:00", 
+          due: "2025-09-07T23:59:00", 
+          submitted: "Not submitted", 
+          gradedStatus: "missed", 
+          score: "0/100" 
+        }
+      ]
+    },
+    { 
+      id: 2,
+      activity: "Assignment 1", 
+      name: "First Programming Task", 
+      description: "Create a simple program using the concepts learned",
+      students: [
+        { 
+          name: "Jane Smith", 
+          start: "2025-09-03T10:00:00", 
+          due: "2025-09-10T23:59:00", 
+          submitted: "2025-09-11T10:30:00", 
+          gradedStatus: "late", 
+          score: "85/100" 
+        },
+        { 
+          name: "Sarah Williams", 
+          start: "2025-09-03T10:00:00", 
+          due: "2025-09-10T23:59:00", 
+          submitted: "2025-09-08T15:45:00", 
+          gradedStatus: "pending", 
+          score: "-" 
+        }
+      ]
+    }
   ];
 
   courseCards.forEach(card => {
     card.addEventListener("click", () => {
+      // Set course title
       const title = card.querySelector("h3")?.textContent || "Course Name";
       courseTitle.textContent = title;
 
+      // Show course detail, hide enrolled list
       courseDetail.classList.remove("hidden");
       enrolledTab.classList.add("hidden");
 
+      // Default toggle: show modules, hide activities
       courseDetail.querySelector("#modules-view").classList.add("active");
       courseDetail.querySelector("#activities-view").classList.remove("active");
+      courseDetail.querySelector("#activity-detail-view").classList.remove("active");
 
+      // Set toggle buttons correctly
       const toggleBtns = courseDetail.querySelectorAll(".toggle-btn");
       toggleBtns.forEach(btn => btn.classList.remove("active"));
       courseDetail.querySelector(".toggle-btn[data-view='modules']").classList.add("active");
 
+      // Scroll into view
       courseDetail.scrollIntoView({ behavior: "smooth" });
 
-      const activitiesTableBody = document.querySelector("#activities-view tbody");
-      activitiesTableBody.innerHTML = "";
-
+      // Populate activities list
+      const activitiesList = document.querySelector("#activities-list");
+      activitiesList.innerHTML = "";
+      
       sampleActivities.forEach(activity => {
-        const row = document.createElement("tr");
-
-        let gradedValue = "-";
-        if (activity.gradedStatus === "graded") gradedValue = '<span class="check">✔</span>';
-        else if (activity.gradedStatus === "pending") gradedValue = '<span class="pending">-</span>';
-        else if (activity.gradedStatus === "late") gradedValue = '<span class="check">✔</span>';
-        else if (activity.gradedStatus === "missed") gradedValue = '<span class="missed">✖</span>';
-
-        let submittedValue = "-";
-        if (activity.submitted !== "Not submitted") {
-          submittedValue = formatDate(activity.submitted);
-        }
-
-        row.innerHTML = `
-          <td>${activity.activity}</td>
-          <td>${activity.name}</td>
-          <td>${formatDate(activity.start)}</td>
-          <td>${formatDate(activity.due)}</td>
-          <td class="center-cell">${submittedValue}</td>
-          <td class="center-cell">${gradedValue}</td>
-          <td>${activity.score}</td>
+        const activityItem = document.createElement("div");
+        activityItem.className = "activity-item";
+        activityItem.dataset.id = activity.id;
+        
+        activityItem.innerHTML = `
+          <div class="activity-info">
+            <h4>${activity.activity}: ${activity.name}</h4>
+            <p>${activity.description}</p>
+          </div>
+          <div class="activity-stats">
+            <span class="submission-count">${activity.students.length} students</span>
+            <i class="fas fa-chevron-right"></i>
+          </div>
         `;
-        activitiesTableBody.appendChild(row);
+        
+        activityItem.addEventListener("click", () => {
+          showActivityDetail(activity);
+        });
+        
+        activitiesList.appendChild(activityItem);
       });
     });
   });
 
-  // Course detail back button
+  // Function to show activity detail
+  function showActivityDetail(activity) {
+    // Hide activities list, show activity detail
+    document.getElementById("activities-view").classList.remove("active");
+    document.getElementById("activity-detail-view").classList.add("active");
+    
+    // Set activity title
+    document.getElementById("activity-detail-title").textContent = `${activity.activity}: ${activity.name}`;
+    
+    // Populate activity detail table
+    const activitiesTableBody = document.querySelector(".activity-detail-table tbody");
+    activitiesTableBody.innerHTML = "";
+    
+    activity.students.forEach(student => {
+      const row = document.createElement("tr");
+      
+      // Determine graded status symbol
+      let gradedValue = "-";
+      if (student.gradedStatus === "graded") gradedValue = '<span class="check">✔</span>';
+      else if (student.gradedStatus === "pending") gradedValue = '<span class="pending">-</span>';
+      else if (student.gradedStatus === "late") gradedValue = '<span class="check">✔</span>';
+      else if (student.gradedStatus === "missed") gradedValue = '<span class="missed">✖</span>';
+      
+      // Format submitted date - use "-" for "Not submitted"
+      let submittedValue = "-";
+      if (student.submitted !== "Not submitted") {
+        submittedValue = formatDate(student.submitted);
+      }
+      
+      row.innerHTML = `
+        <td>${student.name}</td>
+        <td>${formatDate(student.start)}</td>
+        <td>${formatDate(student.due)}</td>
+        <td class="center-cell">${submittedValue}</td>
+        <td class="center-cell">${gradedValue}</td>
+        <td>${student.score}</td>
+      `;
+      activitiesTableBody.appendChild(row);
+    });
+  }
+
+  // Back button from course detail to course list
   backBtn.addEventListener("click", () => {
     courseDetail.classList.add("hidden");
     enrolledTab.classList.remove("hidden");
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
-  // Course detail toggle: Modules / Activities
-  const courseToggleBtns = courseDetail.querySelectorAll(".toggle-btn");
-  const courseDetailViews = courseDetail.querySelectorAll(".detail-view");
-  courseToggleBtns.forEach(btn => {
+  // Back button from activity detail to activities list
+  const activityBackBtn = document.getElementById("activity-back-btn");
+  activityBackBtn.addEventListener("click", () => {
+    document.getElementById("activity-detail-view").classList.remove("active");
+    document.getElementById("activities-view").classList.add("active");
+  });
+
+  // Toggle between modules, activities list, and activity detail
+  const toggleBtns = courseDetail.querySelectorAll(".toggle-btn");
+  toggleBtns.forEach(btn => {
     btn.addEventListener("click", () => {
       const view = btn.dataset.view;
-      courseToggleBtns.forEach(b => b.classList.remove("active"));
+      toggleBtns.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-      courseDetailViews.forEach(v => {
-        v.id === view + "-view" ? v.classList.add("active") : v.classList.remove("active");
-      });
+      
+      // Show the selected view, hide others
+      if (view === "modules") {
+        document.getElementById("modules-view").classList.add("active");
+        document.getElementById("activities-view").classList.remove("active");
+        document.getElementById("activity-detail-view").classList.remove("active");
+      } else if (view === "activities") {
+        document.getElementById("modules-view").classList.remove("active");
+        document.getElementById("activities-view").classList.add("active");
+        document.getElementById("activity-detail-view").classList.remove("active");
+      }
     });
   });
 
@@ -154,68 +257,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const content = toggle.nextElementSibling;
       content.classList.toggle("active");
       toggle.querySelector(".arrow").classList.toggle("rotate");
-    });
-  });
-
-  // ===== ACTIVITY DETAIL =====
-  const activityDetail = document.getElementById("activity-detail");
-  const activityTitle = activityDetail.querySelector(".activity-title");
-  const activityBackBtn = activityDetail.querySelector(".activity-back");
-
-  // Click activity row to show detail
-  document.querySelector("#activities-view tbody").addEventListener("click", e => {
-    const row = e.target.closest("tr");
-    if (!row) return;
-
-    const activityName = row.cells[0].textContent;
-    activityTitle.textContent = activityName;
-
-    activityDetail.classList.remove("hidden");
-    courseDetail.querySelector(".detail-body").classList.add("hidden");
-
-    const submissionsBody = activityDetail.querySelector("#submissions-view tbody");
-    submissionsBody.innerHTML = "";
-
-    sampleActivities
-      .filter(act => act.activity === activityName)
-      .forEach(act => {
-        const row = document.createElement("tr");
-
-        let gradedValue = "-";
-        if (act.gradedStatus === "graded") gradedValue = "✔";
-        else if (act.gradedStatus === "pending") gradedValue = "-";
-        else if (act.gradedStatus === "late") gradedValue = "✔";
-        else if (act.gradedStatus === "missed") gradedValue = "✖";
-
-        let submittedValue = act.submitted !== "Not submitted" ? formatDate(act.submitted) : "-";
-
-        row.innerHTML = `
-          <td>${act.name}</td>
-          <td class="center-cell">${submittedValue}</td>
-          <td class="center-cell">${gradedValue}</td>
-          <td>${act.score}</td>
-        `;
-        submissionsBody.appendChild(row);
-      });
-  });
-
-  // Activity detail back button
-  activityBackBtn.addEventListener("click", () => {
-    activityDetail.classList.add("hidden");
-    courseDetail.querySelector(".detail-body").classList.remove("hidden");
-  });
-
-  // Activity detail toggle: Instructions / Submissions
-  const activityToggleBtns = activityDetail.querySelectorAll(".toggle-btn");
-  const activityViews = activityDetail.querySelectorAll(".detail-view");
-  activityToggleBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const view = btn.dataset.view;
-      activityToggleBtns.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      activityViews.forEach(v => {
-        v.id === view + "-view" ? v.classList.add("active") : v.classList.remove("active");
-      });
     });
   });
 });
