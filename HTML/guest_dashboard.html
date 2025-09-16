@@ -19,7 +19,6 @@
         <a href="#" class="tab-link active" data-tab="home">Home</a>
         <a href="#" class="tab-link" data-tab="courses">Offered Courses</a>
         <a href="#" class="tab-link" data-tab="background">About Us</a>
-        <a href="#" class="tab-link" data-tab="announcements">Announcements</a>
       </nav>
     </aside>
 
@@ -112,16 +111,19 @@
                 <img src="../icons/Agriculture.jpg" alt="Course 1" class="course-img">
                 <div class="label-text">Agriculture</div>
                 <div class="sub-text">WD101 | 40 hours</div>
+                <button class="enroll-btn">Enroll</button>
               </div>
               <div class="dashboard-card course-card" data-course="db201">
                 <img src="../icons/Automotive.jpg" alt="Course 2" class="course-img">
                 <div class="label-text">Automotive</div>
                 <div class="sub-text">DB201 | 60 hours</div>
+                <button class="enroll-btn">Enroll</button>
               </div>
               <div class="dashboard-card course-card" data-course="prg101">
                 <img src="../icons/BreadAndPastry.jpg" alt="Course 3" class="course-img">
                 <div class="label-text">Bread and Pastry</div>
                 <div class="sub-text">PRG101 | 30 hours</div>
+                <button class="enroll-btn">Enroll</button>
               </div>
               <!-- Add more dummy courses -->
             </div>
@@ -149,14 +151,6 @@
           <section class="main-content tab-content" id="background">
             <h2>School Background</h2>
             <p>Information about the school goes here...</p>
-          </section>
-
-          <!-- ===== ANNOUNCEMENTS TAB (now inside main content) ===== -->
-          <section class="main-content tab-content" id="announcements">
-            <h2>Announcements</h2>
-            <ul>
-              <li>No announcements yet. Stay tuned!</li>
-            </ul>
           </section>
         </div>
       </div>
@@ -221,8 +215,7 @@
     </div>
   </div>
 </div>
-
+<div id="floatNotif" class="float-notif hidden"></div>
 <script src="../Script/guest.js"></script>
-
 </body>
 </html>

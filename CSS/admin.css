@@ -223,8 +223,8 @@ body {
 .dashboard-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  width: 150%;
+  gap: 8px;
+  width: 100%;
 }
 
 .dashboard-card {
@@ -1018,4 +1018,221 @@ td.password-cell {
   object-fit: cover;   /* ensures it fills nicely */
   margin-left: 5px;
   cursor: pointer;
+}
+/* ==============================
+   ENROLLMENT REQUESTS TABLE
+============================== */
+.requests-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.requests-table th,
+.requests-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.requests-table thead {
+  background: #3498db;
+  color: #fff;
+}
+
+.requests-table tbody tr:hover {
+  background: #f9f9f9;
+}
+
+/* ==============================
+   ACTION BUTTONS
+============================== */
+.requests-table button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.approve-btn {
+  background: #2ecc71;
+  color: #fff;
+}
+
+.approve-btn:hover {
+  background: #27ae60;
+}
+
+.reject-btn {
+  background: #e74c3c;
+  color: #fff;
+  margin-left: 5px;
+}
+
+.reject-btn:hover {
+  background: #c0392b;
+}
+
+/* Disabled state */
+.requests-table button:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+}
+/* ===== COURSE DETAIL SECTION ===== */
+.course-detail {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.course-detail.hidden {
+  display: none;
+}
+
+.course-detail.active {
+  display: block;
+}
+
+/* Header */
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.detail-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.detail-header .back-btn {
+  background: #3498db;
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+.detail-header .back-btn:hover {
+  background: #2980b9;
+}
+
+/* Toggle Buttons (Modules / Activities) */
+.toggle-wrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.toggle-btn {
+  flex: 1;
+  background: #f1f1f1;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.toggle-btn.active {
+  background: #3498db;
+  color: #fff;
+}
+
+/* Views */
+.detail-view {
+  display: none;
+}
+.detail-view.active {
+  display: block;
+}
+
+/* Competency Sections */
+.competency {
+  margin-bottom: 20px;
+}
+.competency h4 {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: #2c3e50;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 5px;
+}
+
+/* Subtopics */
+.subtopic {
+  margin-bottom: 10px;
+}
+
+.subtopic-toggle {
+  width: 100%;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px;
+  text-align: left;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subtopic-toggle:hover {
+  background: #f0f8ff;
+}
+
+.subtopic-content {
+  display: none;
+  padding: 10px 15px;
+  background: #fdfdfd;
+  border-left: 3px solid #3498db;
+  margin-top: 5px;
+  border-radius: 6px;
+}
+
+.subtopic.open .subtopic-content {
+  display: block;
+}
+
+/* Activity Detail Table */
+.activity-detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.activity-detail-table th,
+.activity-detail-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.activity-detail-table th {
+  background: #3498db;
+  color: #fff;
+  font-weight: 600;
+}
+
+.activity-detail-table tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.activity-detail-table tr:hover {
+  background: #f0f8ff;
 }

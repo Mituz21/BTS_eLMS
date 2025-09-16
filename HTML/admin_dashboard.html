@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<!-- saved from url=(0034)file:///C:/Users/Arlen/index.html# -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>eLMS Dashboard</title>
   <link rel="stylesheet" href="../CSS/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
   <div class="container">
-    
     <!-- ===== SIDEBAR ===== -->
     <aside class="sidebar">
       <div class="profile">
@@ -20,14 +20,13 @@
         <a href="#" class="tab-link" data-tab="trainers">Trainers</a>
         <a href="#" class="tab-link" data-tab="trainees">Trainees</a>
         <a href="#" class="tab-link" data-tab="guests">Guests</a>
-        <a href="#" class="tab-link active" data-tab="courses">Courses</a>
-        <a href="#">Enrollments</a>
+        <a href="#" class="tab-link" data-tab="courses">Courses</a>
+        <a href="#" class="tab-link" data-tab="enrollments">Enrollments</a>
       </nav>
     </aside>
 
     <!-- ===== MAIN ===== -->
     <main class="main">
-
       <!-- ===== TOP BAR ===== -->
       <header class="topbar">
         <div class="user-info">
@@ -39,38 +38,37 @@
 
       <!-- ===== CONTENT AREA ===== -->
       <div class="content">
-
+         <!-- LEFT SIDE: MAIN CONTENT -->
+        <div class="main-content">
         <!-- ===== HOME TAB ===== -->
         <section class="main-content tab-content active" id="home">
+          <!-- Switch Dashboard/News with Post button -->
+          <div class="news-switch-wrapper">
+            <div class="switch-oval">
+              <div class="switch-inner" id="switchInner"></div>
+              <button class="switch-btn active" data-tab="dashboard">Dashboard</button>
+              <button class="switch-btn" data-tab="news">News</button>
+            </div>
+            <div class="post-container">
+              <button id="newsPostBtn" class="post-btn">+ Post</button>
+            </div>
+          </div>
 
-         <!-- Switch Dashboard/News with Post button -->
-<div class="news-switch-wrapper">
-  <div class="switch-oval">
-    <div class="switch-inner" id="switchInner"></div>
-    <button class="switch-btn active" data-tab="dashboard">Dashboard</button>
-    <button class="switch-btn" data-tab="news">News</button>
-  </div>
-  <div class="post-container">
-    <button id="newsPostBtn" class="post-btn">+ Post</button>
-  </div>
-</div>
-
-<!-- New Post Section (hidden by default) -->
-<div id="newPostSection" class="new-post-section" style="display: none;">
-  <textarea id="postCaption" placeholder="Write your caption..."></textarea>
-  <div class="post-actions">
-    <input type="file" id="postImage" style="display:none">
-    <button id="uploadBtn" class="upload-btn">Upload Photo</button>
-    <div class="post-right-buttons">
-      <button id="cancelPostBtn" class="cancel-btn">Cancel</button>
-      <button id="submitPostBtn" class="submit-btn">Post</button>
-    </div>
-  </div>
-</div>
+          <!-- New Post Section (hidden by default) -->
+          <div id="newPostSection" class="new-post-section" style="display: none;">
+            <textarea id="postCaption" placeholder="Write your caption..."></textarea>
+            <div class="post-actions">
+              <input type="file" id="postImage" style="display:none">
+              <button id="uploadBtn" class="upload-btn">Upload Photo</button>
+              <div class="post-right-buttons">
+                <button id="cancelPostBtn" class="cancel-btn">Cancel</button>
+                <button id="submitPostBtn" class="submit-btn">Post</button>
+              </div>
+            </div>
+          </div>
 
           <!-- Dashboard Content -->
           <div class="dashboard tab-inner active" id="dashboard">
-
             <!-- Slogan Box -->
             <div class="slogan-box">
               <div class="slogan-text">
@@ -88,39 +86,39 @@
 
             <!-- Dashboard Cards -->
             <div class="dashboard-cards">
-            <div class="dashboard-cards">
-                <div class="dashboard-card" data-target="trainers">
-                    <div class="number-circle">12</div>
-                    <div class="label-text">Total Trainers</div>
-                </div>
-                <div class="dashboard-card" data-target="trainees">
-                    <div class="number-circle">30</div>
-                    <div class="label-text">Total Trainees</div>
-                </div>
-                <div class="dashboard-card" data-target="guests">
-                    <div class="number-circle">45</div>
-                    <div class="label-text">Guests</div>
-                </div>
-                <div class="dashboard-card" data-target="courses">
-                    <div class="number-circle">8</div>
-                    <div class="label-text">Courses Offered</div>
-                </div>
-                <div class="dashboard-card" data-target="courses">
-                    <div class="number-circle">5</div>
-                    <div class="label-text">Enrollment Requests</div>
-                </div>
+              <div class="dashboard-card" data-target="trainers">
+                <div class="number-circle">12</div>
+                <div class="label-text">Total Trainers</div>
+              </div>
+              <div class="dashboard-card" data-target="trainees">
+                <div class="number-circle">30</div>
+                <div class="label-text">Total Trainees</div>
+              </div>
+              <div class="dashboard-card" data-target="guests">
+                <div class="number-circle">45</div>
+                <div class="label-text">Guests</div>
+              </div>
+              <div class="dashboard-card" data-target="courses">
+                <div class="number-circle">8</div>
+                <div class="label-text">Courses Offered</div>
+              </div>
+              <div class="dashboard-card" data-target="courses">
+                <div class="number-circle">5</div>
+                <div class="label-text">Enrollment Requests</div>
+              </div>
             </div>
 
-          <!-- News Content -->
-          <div class="news tab-inner" id="news">
-            <div class="news-header">
-              <h2>Latest News</h2>
+            <!-- News Content -->
+            <div class="news tab-inner" id="news">
+              <div class="news-header">
+                <h2>Latest News</h2>
+              </div>
+              <ul class="news-list">
+                <li>No news yet. Stay tuned!</li>
+              </ul>
             </div>
-            <ul class="news-list">
-              <li>No news yet. Stay tuned!</li>
-            </ul>
           </div>
-        </div></div></section>
+        </section>
 
         <!-- ===== TRAINERS TAB ===== -->
         <section class="main-content tab-content" id="trainers">
@@ -319,8 +317,160 @@
               </div>
             </div>
           </div>
+
+          <!-- === ADDED FROM SECOND HTML === -->
+          <div id="course-detail" class="course-detail hidden">
+            <div class="detail-header">
+              <h2 class="course-title">Course Name</h2>
+              <button class="back-btn">← Back</button>
+            </div>
+
+            <div class="detail-body">
+              <!-- Toggle Buttons: Modules / Activities -->
+              <div class="toggle-wrapper">
+                <button class="toggle-btn active" data-view="modules">Modules</button>
+                <button class="toggle-btn" data-view="activities">Activities</button>
+              </div>
+
+              <!-- Modules View -->
+              <div class="detail-view active" id="modules-view">
+                <!-- Basic Competency -->
+                <div class="competency">
+                  <h4>Basic Competency</h4>
+                  <div class="subtopic">
+                    <button class="subtopic-toggle">
+                      Introduction
+                      <i class="fa-solid fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="subtopic-content">
+                      <p>📘 Handouts</p>
+                      <p>📝 Quiz</p>
+                      <p>🎯 Activity</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Common Competency -->
+                <div class="competency">
+                  <h4>Common Competency</h4>
+                  <div class="subtopic">
+                    <button class="subtopic-toggle">
+                      Topic 1
+                      <i class="fa-solid fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="subtopic-content">
+                      <p>📘 Handouts</p>
+                      <p>📝 Quiz</p>
+                      <p>🎯 Activity</p>
+                    </div>
+                  </div>
+                  <div class="subtopic">
+                    <button class="subtopic-toggle">
+                      Topic 2
+                      <i class="fa-solid fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="subtopic-content">
+                      <p>📘 Handouts</p>
+                      <p>📝 Quiz</p>
+                      <p>🎯 Activity</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Core Competency -->
+                <div class="competency">
+                  <h4>Core Competency</h4>
+                  <div class="subtopic">
+                    <button class="subtopic-toggle">
+                      Advanced Topic
+                      <i class="fa-solid fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="subtopic-content">
+                      <p>📘 Handouts</p>
+                      <p>📝 Quiz</p>
+                      <p>🎯 Activity</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Activities View -->
+              <div class="detail-view" id="activities-view">
+                <div id="activities-list">
+                  <!-- Activity items will be populated here -->
+                </div>
+              </div>
+
+              <!-- Activity Detail View -->
+              <div class="detail-view" id="activity-detail-view">
+                <div class="activity-detail-header">
+                  <button id="activity-back-btn">← Back</button>
+                  <h3 id="activity-detail-title">Activity Details</h3>
+                </div>
+
+                <table class="activity-detail-table">
+                  <thead>
+                    <tr>
+                      <th>Student Name</th>
+                      <th>Start</th>
+                      <th>Due</th>
+                      <th>Submitted</th>
+                      <th>Graded</th>
+                      <th>Score</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- JS will populate rows here -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </section>
 
+        <!-- ===== ENROLLMENTS TAB ===== -->
+        <section class="main-content tab-content" id="enrollments">
+          <div class="tab-header">
+            <h2>Enrollment Requests</h2>
+          </div>
+
+          <div class="table-container">
+            <table class="requests-table">
+              <thead>
+                <tr>
+                  <th>Trainee Name</th>
+                  <th>Course</th>
+                  <th>Status</th>
+                  <th>Remarks</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="requests-body">
+                <!-- JS will populate rows dynamically -->
+                <tr>
+                  <td>Juan Dela Cruz</td>
+                  <td>Introduction to Web Development</td>
+                  <td>Pending</td>
+                  <td>Waiting for approval</td>
+                  <td>
+                    <button class="approve-btn">Approve</button>
+                    <button class="reject-btn">Reject</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Maria Santos</td>
+                  <td>Database Management Systems</td>
+                  <td>Approved</td>
+                  <td>Enrolled successfully</td>
+                  <td>
+                    <button class="reject-btn">Unenroll</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+</div>
         <!-- ===== ANNOUNCEMENTS ===== -->
         <aside class="announcements">
           <h2>Announcements</h2>
@@ -333,6 +483,5 @@
   </div>
 
   <script src="../Script/admin.js"></script>
-
-
-</body></html>
+</body>
+</html>

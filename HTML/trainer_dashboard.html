@@ -115,13 +115,13 @@
             </div>
           </section>
 
-           <!-- MY COURSES TAB -->
+          <!-- MY COURSES TAB -->
           <section class="tab-content" id="mycourses">
             <div class="course-box">
 
               <!-- Enrolled Courses -->
               <div id="enrolled" class="tab-inner active">
-                <h2 class="section-header">Enrolled Courses</h2>
+                <h2 class="section-header">Handled Courses</h2>
                 <div class="course-list">
                   <div class="course-card">
                     <img src="https://via.placeholder.com/250x140" alt="Course Image">
@@ -142,147 +142,146 @@
                 </div>
               </div>
 
-            <!-- Course Detail -->
-<div id="course-detail" class="course-detail hidden">
-  <div class="detail-header">
-    <h2 class="course-title">Course Name</h2>
-    <button class="back-btn">← Back</button>
-  </div>
+              <!-- Course Detail -->
+              <div id="course-detail" class="course-detail hidden">
+                <div class="detail-header">
+                  <h2 class="course-title">Course Name</h2>
+                  <button class="back-btn">← Back</button>
+                </div>
 
-  <div class="detail-body">
-    <!-- Toggle Buttons: Modules / Activities -->
-    <div class="toggle-wrapper">
-      <button class="toggle-btn active" data-view="modules">Modules</button>
-      <button class="toggle-btn" data-view="activities">Activities</button>
-    </div>
+                <div class="detail-body">
+                  <!-- Toggle Buttons: Modules / Activities -->
+                  <div class="toggle-wrapper">
+                    <button class="toggle-btn active" data-view="modules">Modules</button>
+                    <button class="toggle-btn" data-view="activities">Activities</button>
+                  </div>
 
-    <!-- Modules View -->
-    <div class="detail-view active" id="modules-view">
+                  <!-- Modules View -->
+                  <div class="detail-view active" id="modules-view">
 
-      <!-- Basic Competency -->
-      <div class="competency">
-        <h4>Basic Competency</h4>
-        <div class="subtopic">
-          <button class="subtopic-toggle">
-            Introduction
-            <i class="fa-solid fa-chevron-down arrow"></i>
-          </button>
-          <div class="subtopic-content">
-            <p>📘 Handouts</p>
-            <p>📝 Quiz</p>
-            <p>🎯 Activity</p>
-          </div>
-        </div>
-      </div>
+                    <!-- Basic Competency -->
+                    <div class="competency">
+                      <h4>Basic Competency</h4>
+                      <div class="subtopic">
+                        <button class="subtopic-toggle">
+                          Introduction
+                          <i class="fa-solid fa-chevron-down arrow"></i>
+                        </button>
+                        <div class="subtopic-content">
+                          <p>📘 Handouts</p>
+                          <p>📝 Quiz</p>
+                          <p>🎯 Activity</p>
+                        </div>
+                      </div>
+                    </div>
 
-      <!-- Common Competency -->
-      <div class="competency">
-        <h4>Common Competency</h4>
-        <div class="subtopic">
-          <button class="subtopic-toggle">
-            Topic 1
-            <i class="fa-solid fa-chevron-down arrow"></i>
-          </button>
-          <div class="subtopic-content">
-            <p>📘 Handouts</p>
-            <p>📝 Quiz</p>
-            <p>🎯 Activity</p>
-          </div>
-        </div>
-        <div class="subtopic">
-          <button class="subtopic-toggle">
-            Topic 2
-            <i class="fa-solid fa-chevron-down arrow"></i>
-          </button>
-          <div class="subtopic-content">
-            <p>📘 Handouts</p>
-            <p>📝 Quiz</p>
-            <p>🎯 Activity</p>
-          </div>
-        </div>
-      </div>
+                    <!-- Common Competency -->
+                    <div class="competency">
+                      <h4>Common Competency</h4>
+                      <div class="subtopic">
+                        <button class="subtopic-toggle">
+                          Topic 1
+                          <i class="fa-solid fa-chevron-down arrow"></i>
+                        </button>
+                        <div class="subtopic-content">
+                          <p>📘 Handouts</p>
+                          <p>📝 Quiz</p>
+                          <p>🎯 Activity</p>
+                        </div>
+                      </div>
+                      <div class="subtopic">
+                        <button class="subtopic-toggle">
+                          Topic 2
+                          <i class="fa-solid fa-chevron-down arrow"></i>
+                        </button>
+                        <div class="subtopic-content">
+                          <p>📘 Handouts</p>
+                          <p>📝 Quiz</p>
+                          <p>🎯 Activity</p>
+                        </div>
+                      </div>
+                    </div>
 
-      <!-- Core Competency -->
-      <div class="competency">
-        <h4>Core Competency</h4>
-        <div class="subtopic">
-          <button class="subtopic-toggle">
-            Advanced Topic
-            <i class="fa-solid fa-chevron-down arrow"></i>
-          </button>
-          <div class="subtopic-content">
-            <p>📘 Handouts</p>
-            <p>📝 Quiz</p>
-            <p>🎯 Activity</p>
-          </div>
-        </div>
-      </div>
+                    <!-- Core Competency -->
+                    <div class="competency">
+                      <h4>Core Competency</h4>
+                      <div class="subtopic">
+                        <button class="subtopic-toggle">
+                          Advanced Topic
+                          <i class="fa-solid fa-chevron-down arrow"></i>
+                        </button>
+                        <div class="subtopic-content">
+                          <p>📘 Handouts</p>
+                          <p>📝 Quiz</p>
+                          <p>🎯 Activity</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-    </div>
+                  <!-- Activities View -->
+                  <div class="detail-view" id="activities-view">
+                    <div id="activities-list">
+                      <!-- Activity items will be populated here -->
+                    </div>
+                  </div>
 
-    <!-- Activities View -->
-<div class="detail-view" id="activities-view">
-  <div id="activities-list">
-    <!-- Activity items will be populated here -->
-  </div>
-</div>
+                  <!-- Activity Detail View -->
+                  <div class="detail-view" id="activity-detail-view">
+                    <div class="activity-detail-header">
+                      <button id="activity-back-btn">← Back</button>
+                      <h3 id="activity-detail-title">Activity Details</h3>
+                    </div>
 
-<!-- Activity Detail View -->
-<div class="detail-view" id="activity-detail-view">
-  <div class="activity-detail-header">
-    <button id="activity-back-btn">← Back</button>
-    <h3 id="activity-detail-title">Activity Details</h3>
-  </div>
-  
-  <table class="activity-detail-table">
-    <thead>
-      <tr>
-        <th>Student Name</th>
-        <th>Start</th>
-        <th>Due</th>
-        <th>Submitted</th>
-        <th>Graded</th>
-        <th>Score</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- JS will populate rows here -->
-    </tbody>
-  </table>
-</div>
-  </div>
-</div>
+                    <table class="activity-detail-table">
+                      <thead>
+                        <tr>
+                          <th>Student Name</th>
+                          <th>Start</th>
+                          <th>Due</th>
+                          <th>Submitted</th>
+                          <th>Graded</th>
+                          <th>Score</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- JS will populate rows here -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 
           <!-- ENROLLMENT REQUEST TAB -->
-<section class="tab-content" id="requests">
-  <h2 class="section-header">Enrollment Requests</h2>
-  <table class="requests-table">
-    <thead>
-      <tr>
-        <th>Course</th>
-        <th>Trainee Name</th>
-        <th>Status</th>
-        <th>Remarks</th>
-      </tr>
-    </thead>
-    <tbody id="requests-body">
-      <tr>
-        <td>IT101 - Programming Basics</td>
-        <td>John Doe</td>
-        <td>Pending</td>
-        <td>-</td>
-      </tr>
-      <tr>
-        <td>ENG201 - Communication Skills</td>
-        <td>Jane Smith</td>
-        <td>Approved</td>
-        <td>Verified by admin</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+          <section class="tab-content" id="requests">
+            <h2 class="section-header">Enrollment Requests</h2>
+            <table class="requests-table">
+              <thead>
+                <tr>
+                  <th>Course</th>
+                  <th>Trainee Name</th>
+                  <th>Status</th>
+                  <th>Remarks</th>
+                </tr>
+              </thead>
+              <tbody id="requests-body">
+                <tr>
+                  <td>IT101 - Programming Basics</td>
+                  <td>John Doe</td>
+                  <td>Pending</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>ENG201 - Communication Skills</td>
+                  <td>Jane Smith</td>
+                  <td>Approved</td>
+                  <td>Verified by admin</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
         </div>
 
         <!-- RIGHT SIDE: ANNOUNCEMENTS -->
@@ -303,6 +302,8 @@
       <!-- Profile form omitted for brevity -->
     </div>
   </div>
+
   <script src="../Script/trainer.js"></script>
 </body>
 </html>
+ 

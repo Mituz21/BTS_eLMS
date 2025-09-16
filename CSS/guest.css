@@ -820,6 +820,54 @@ body {
 .delete-btn:hover {
   background: #cc0000;
 }
+.enroll-btn {
+  margin-top: 8px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #004080;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.enroll-btn:hover {
+  background-color: #0066cc;
+}
+
+.float-notif {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #004080;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease-in-out;
+  z-index: 9999;
+}
+
+.float-notif.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hidden {
+  display: none;
+}
+.course-card[data-enrolled="false"] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.course-card[data-enrolled="true"] {
+  opacity: 1;
+  cursor: pointer;
+}
 
 /* ===== RESPONSIVENESS ===== */
 @media (max-width: 700px) {
